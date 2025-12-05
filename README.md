@@ -76,7 +76,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
 ### 1. Clone o repositório
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/pablomont/accg-frontend/
 cd accg-frontend
 ```
 
@@ -85,20 +85,12 @@ cd accg-frontend
 npm install
 ```
 
-### 3. Configure as variáveis de ambiente
-```bash
-# Copie o arquivo de exemplo
-cp .env.example .env
-
-# Edite o arquivo .env com as configurações necessárias
-```
-
-### 4. Execute o projeto
+### 3. Execute o projeto
 ```bash
 npm run dev
 ```
 
-### 5. Acesse no navegador
+### 4. Acesse no navegador
 ```
 http://localhost:5173
 ```
@@ -585,6 +577,6 @@ Este projeto é de uso interno da organização.
 
 ---
 
-> 💡 **Dica:** Em caso de dúvidas, consulte primeiro esta documentação e os links de estudo. Se persistir, procure o Professor ou colega mais experiente.
+> 💡 **Dica:** Em caso de dúvidas, consulte primeiro esta documentação e os links de estudo. Se persistir, procure o professor ou colega mais experiente.
 
 ---
