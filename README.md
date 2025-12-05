@@ -176,9 +176,9 @@ As variáveis estão definidas em `src/styles/variables.css`. **Sempre utilize e
 
 #### Cores Principais
 ```css
-var(--color-primary)       /* Azul principal: #3b82f6 */
-var(--color-primary-dark)  /* Azul escuro: #2563eb */
-var(--color-primary-light) /* Azul claro: #60a5fa */
+var(--color-primary)       /* Azul principal: #1273b7 */
+var(--color-primary-dark)  /* Azul escuro: #0d5a8f */
+var(--color-primary-light) /* Azul claro: #52a3df */
 ```
 
 #### Cores de Feedback
