@@ -244,115 +244,129 @@ var(--shadow-lg)   /* Sombra forte */
 
 As tarefas estão organizadas por **prioridade de implementação**. Siga a ordem sugerida para melhor aproveitamento.
 
-### 🔴 PRIORIDADE ALTA (Implementar Primeiro)
+# 📋 Backlog de Tarefas - Gestão Financeira (POC/MVP)
 
-> Componentes base que serão utilizados em todo o sistema.
-
-#### Componentes UI Reutilizáveis
-
-| # | Tarefa | Descrição | Complexidade |
-|---|--------|-----------|--------------|
-| 1 | **Componente Button** | Criar botão com variantes (primary, secondary, danger, ghost), tamanhos (sm, md, lg) e estados (loading, disabled) | 🟢 Fácil |
-| 2 | **Componente Input** | Criar input com label, mensagem de erro, ícones (esquerda/direita) e estados visuais | 🟢 Fácil |
-| 3 | **Componente Select** | Criar select/dropdown com label, placeholder, opções e mensagem de erro | 🟢 Fácil |
-| 4 | **Componente Card** | Criar container com título, conteúdo e footer opcional | 🟢 Fácil |
-| 5 | **Componente Modal** | Criar modal com overlay, título, conteúdo e ações. Fechar com ESC e clique fora | 🟡 Médio |
-| 6 | **Componente Table** | Criar tabela com colunas configuráveis, loading state e mensagem de vazio | 🟡 Médio |
-| 7 | **Componente Badge** | Criar badge para status com variantes de cor (success, warning, danger, info) | 🟢 Fácil |
-| 8 | **Componente Spinner** | Criar indicador de loading com tamanhos variados | 🟢 Fácil |
-| 9 | **Componente Toast** | Criar sistema de notificações (success, error, warning, info) com auto-dismiss | 🟡 Médio |
+As tarefas estão organizadas por prioridade de implementação. Siga a ordem sugerida para melhor aproveitamento.
 
 ---
 
-### 🟠 PRIORIDADE MÉDIA (Implementar em Seguida)
+## 🔴 PRIORIDADE ALTA (Implementar Primeiro)
 
-> Funcionalidades principais dos módulos.
+Componentes base que serão utilizados em todo o sistema.
 
-#### Módulo: Cadastro de Associados
-
-| # | Tarefa | Descrição | Complexidade |
-|---|--------|-----------|--------------|
-| 10 | **Formulário de Cadastro** | Criar formulário com campos: nome, CPF/CNPJ, e-mail, telefone, endereço completo | 🟡 Médio |
-| 11 | **Máscaras de Input** | Implementar máscaras para CPF/CNPJ, telefone e CEP | 🟡 Médio |
-| 12 | **Validação de Campos** | Validar campos obrigatórios, formato de e-mail, CPF/CNPJ válido | 🟡 Médio |
-| 13 | **Listagem de Associados** | Criar tabela paginada com nome, CPF/CNPJ, e-mail e status | 🟡 Médio |
-| 14 | **Busca e Filtros** | Implementar busca por nome, CPF/CNPJ ou e-mail | 🟢 Fácil |
-| 15 | **Ordenação de Colunas** | Permitir ordenar tabela clicando nos cabeçalhos | 🟡 Médio |
-| 16 | **Visualização Detalhada** | Criar modal com ficha completa do associado | 🟢 Fácil |
-| 17 | **Edição de Associado** | Tela de edição reaproveitando formulário de cadastro | 🟢 Fácil |
-| 18 | **Exclusão de Associado** | Modal de confirmação antes de excluir | 🟢 Fácil |
-| 19 | **Integração API - Criar** | Conectar formulário com API de criação (POST) | 🟡 Médio |
-| 20 | **Integração API - Listar** | Conectar listagem com API de consulta (GET) | 🟡 Médio |
-| 21 | **Integração API - Editar** | Conectar edição com API de atualização (PUT/PATCH) | 🟡 Médio |
-| 22 | **Integração API - Excluir** | Conectar exclusão com API (DELETE) | 🟢 Fácil |
-| 23 | **Responsividade** | Adaptar telas para dispositivos móveis | 🟡 Médio |
-
-#### Módulo: Cadastro de Despesas
+### Componentes UI Reutilizáveis
 
 | # | Tarefa | Descrição | Complexidade |
 |---|--------|-----------|--------------|
-| 24 | **Cadastro de Categoria** | Formulário para criar categorias de despesa | 🟢 Fácil |
-| 25 | **Listagem Hierárquica** | Exibir plano de contas em árvore (categorias e subcategorias) | 🔴 Difícil |
-| 26 | **Expandir/Colapsar** | Funcionalidade para abrir/fechar categorias na árvore | 🟡 Médio |
-| 27 | **Formulário de Despesa** | Criar formulário com descrição, valor, data, categoria, forma de pagamento | 🟡 Médio |
-| 28 | **Seleção de Categoria** | Dropdown com busca para selecionar categoria | 🟡 Médio |
-| 29 | **Listagem de Despesas** | Tabela paginada com data, descrição, categoria, valor e status | 🟡 Médio |
-| 30 | **Filtro por Período** | Filtrar despesas por data inicial e final | 🟡 Médio |
-| 31 | **Filtro por Categoria** | Filtrar despesas por categoria | 🟢 Fácil |
-| 32 | **Totalizador** | Exibir soma das despesas filtradas | 🟢 Fácil |
-| 33 | **Edição de Despesa** | Modal para editar despesa existente | 🟢 Fácil |
-| 34 | **Exclusão de Despesa** | Confirmação antes de excluir | 🟢 Fácil |
-| 35 | **Integrações API** | Conectar CRUD de categorias e despesas com API | 🟡 Médio |
-| 36 | **Responsividade** | Adaptar telas para dispositivos móveis | 🟡 Médio |
-
-#### Módulo: Geração de Boleto/PIX
-
-| # | Tarefa | Descrição | Complexidade |
-|---|--------|-----------|--------------|
-| 37 | **Seleção de Associado** | Dropdown com busca para selecionar associado | 🟡 Médio |
-| 38 | **Formulário de Boleto** | Campos: valor, vencimento, descrição, multa/juros | 🟡 Médio |
-| 39 | **Validação de Boleto** | Validar campos obrigatórios e valores | 🟢 Fácil |
-| 40 | **Preview do Boleto** | Pré-visualização antes de gerar | 🟡 Médio |
-| 41 | **Exibição do Boleto** | Tela com boleto gerado e opção de download PDF | 🟡 Médio |
-| 42 | **Copiar Linha Digitável** | Botão para copiar linha digitável | 🟢 Fácil |
-| 43 | **Formulário PIX** | Campos: valor e descrição | 🟢 Fácil |
-| 44 | **Exibição QR Code** | Mostrar QR Code PIX gerado | 🟡 Médio |
-| 45 | **Copiar Código PIX** | Botão para copiar código copia e cola | 🟢 Fácil |
-| 46 | **Download QR Code** | Baixar QR Code como imagem | 🟡 Médio |
-| 47 | **Histórico de Boletos** | Listagem com status (pago, pendente, vencido) | 🟡 Médio |
-| 48 | **Filtros do Histórico** | Filtrar por período e status | 🟡 Médio |
-| 49 | **Badges de Status** | Indicadores visuais coloridos para status | 🟢 Fácil |
-| 50 | **Histórico de PIX** | Listagem de PIX gerados | 🟡 Médio |
-| 51 | **Integrações API** | Conectar geração e consultas com API | 🟡 Médio |
-| 52 | **Responsividade** | Adaptar telas para dispositivos móveis | 🟡 Médio |
+| 1 | Componente Button | Criar botão com variantes (primary, secondary, danger), tamanhos (sm, md, lg) e estados (loading, disabled) | 🟢 Fácil |
+| 2 | Componente Input | Criar input com label, placeholder, mensagem de erro e estados visuais (foco, erro) | 🟢 Fácil |
+| 3 | Componente Select | Criar select/dropdown com label, placeholder, opções e mensagem de erro | 🟢 Fácil |
+| 4 | Componente Card | Criar container com título, conteúdo e footer opcional para agrupar informações | 🟢 Fácil |
+| 5 | Componente Table | Criar tabela com colunas configuráveis, estilo zebrado e mensagem de lista vazia | 🟡 Médio |
+| 6 | Componente Badge | Criar badge para status com variantes de cor (success, warning, danger, info) | 🟢 Fácil |
+| 7 | Componente Spinner | Criar indicador de loading animado com tamanhos variados (sm, md, lg) | 🟢 Fácil |
+| 8 | Componente Modal | Criar modal com overlay escuro, título, conteúdo e botões de ação | 🟡 Médio |
+| 9 | Navegação Sidebar | Criar menu lateral fixo com links para Associados, Despesas e Boletos/PIX | 🟡 Médio |
 
 ---
 
-### 🟢 PRIORIDADE BAIXA (Implementar por Último)
+## 🟠 PRIORIDADE MÉDIA (Implementar em Seguida)
 
-> Melhorias, refinamentos e funcionalidades extras.
+Funcionalidades principais dos módulos.
+
+### Módulo: Cadastro de Associados
 
 | # | Tarefa | Descrição | Complexidade |
 |---|--------|-----------|--------------|
-| 53 | **Upload de Foto/Documento** | Componente para upload de arquivos do associado | 🟡 Médio |
-| 54 | **Ficha de Associação (PDF)** | Gerar visualização/impressão da ficha | 🔴 Difícil |
-| 55 | **Ícones por Categoria** | Ícones visuais para tipos de despesa | 🟢 Fácil |
-| 56 | **Breadcrumb** | Navegação em migalhas de pão | 🟢 Fácil |
-| 57 | **Loading Global** | Indicador de carregamento durante requisições | 🟢 Fácil |
-| 58 | **Tratamento de Erros** | Mensagens amigáveis para erros de API | 🟡 Médio |
-| 59 | **Página de Erro** | Tela genérica para falhas de API | 🟢 Fácil |
-| 60 | **Documentação** | Documentar componentes criados (props, exemplos) | 🟢 Fácil |
+| 10 | Página de Listagem | Criar tela com tabela exibindo Nome, CPF/CNPJ, Email, Telefone e Status dos associados | 🟡 Médio |
+| 11 | Dados Mockados | Criar array com 5-10 associados fictícios para desenvolvimento sem API | 🟢 Fácil |
+| 12 | Formulário de Cadastro | Criar formulário com campos: nome, CPF/CNPJ, e-mail, telefone e endereço | 🟡 Médio |
+| 13 | Controle de Estado do Form | Usar useState para controlar todos os campos do formulário de associado | 🟢 Fácil |
+| 14 | Validação Básica | Validar campos obrigatórios e exibir mensagens de erro visuais | 🟡 Médio |
+| 15 | Busca por Nome/CPF | Implementar campo de busca que filtra a lista em tempo real | 🟢 Fácil |
+| 16 | Visualização Detalhada | Criar modal ou página exibindo todos os dados de um associado específico | 🟢 Fácil |
+| 17 | Edição de Associado | Reaproveitar formulário de cadastro para modo de edição | 🟡 Médio |
+| 18 | Exclusão com Confirmação | Criar modal de confirmação antes de excluir um associado | 🟢 Fácil |
+| 19 | Indicador de Status | Exibir badge colorido para status Ativo (verde) e Inativo (vermelho) | 🟢 Fácil |
+| 20 | Responsividade | Adaptar listagem e formulário para funcionar em telas mobile | 🟡 Médio |
+
+### Módulo: Cadastro de Despesas (Plano de Contas)
+
+| # | Tarefa | Descrição | Complexidade |
+|---|--------|-----------|--------------|
+| 21 | Página de Listagem | Criar tela com tabela exibindo Código, Descrição, Categoria e Valor médio | 🟡 Médio |
+| 22 | Dados Mockados | Criar array com categorias de despesas típicas (Aluguel, Energia, Internet, etc.) | 🟢 Fácil |
+| 23 | Formulário de Despesa | Criar formulário com Código, Descrição, Categoria (Fixa/Variável) e Valor | 🟡 Médio |
+| 24 | Select de Categoria | Implementar dropdown para selecionar entre Despesa Fixa ou Variável | 🟢 Fácil |
+| 25 | Formatação de Valores | Exibir valores em formato de moeda brasileira (R$ 1.234,56) | 🟢 Fácil |
+| 26 | Totalizador | Exibir cards com soma de Despesas Fixas, Variáveis e Total Geral | 🟡 Médio |
+| 27 | Filtro por Categoria | Permitir filtrar lista mostrando apenas Fixas ou apenas Variáveis | 🟢 Fácil |
+| 28 | Edição de Despesa | Modal ou página para editar uma despesa existente | 🟢 Fácil |
+| 29 | Exclusão com Confirmação | Modal de confirmação antes de excluir uma despesa | 🟢 Fácil |
+| 30 | Responsividade | Adaptar listagem e formulário para funcionar em telas mobile | 🟡 Médio |
+
+### Módulo: Geração de Boleto/PIX
+
+| # | Tarefa | Descrição | Complexidade |
+|---|--------|-----------|--------------|
+| 31 | Página Principal | Criar tela com seleção de associado, valor, mês de referência e botões de ação | 🟡 Médio |
+| 32 | Select de Associado | Dropdown populado com lista de associados para seleção | 🟢 Fácil |
+| 33 | Campos de Valor e Vencimento | Inputs para informar valor da mensalidade e data de vencimento | 🟢 Fácil |
+| 34 | Componente PixDisplay | Criar componente que exibe código PIX em área destacada com fonte mono | 🟡 Médio |
+| 35 | Botão Copiar PIX | Implementar cópia do código PIX para área de transferência com feedback visual | 🟢 Fácil |
+| 36 | Componente BoletoDisplay | Criar visualização simulada de boleto com dados do associado e valor | 🟡 Médio |
+| 37 | Linha Digitável | Exibir linha digitável fictícia com botão para copiar | 🟢 Fácil |
+| 38 | Botão Imprimir | Implementar impressão do boleto usando window.print() | 🟢 Fácil |
+| 39 | Histórico de Cobranças | Tabela listando boletos/PIX gerados com Associado, Tipo, Valor, Data e Status | 🟡 Médio |
+| 40 | Badges de Status | Indicadores coloridos para Pago (verde), Pendente (amarelo) e Vencido (vermelho) | 🟢 Fácil |
+| 41 | Filtro por Status | Permitir filtrar histórico por status de pagamento | 🟢 Fácil |
+| 42 | Responsividade | Adaptar telas de geração e histórico para dispositivos móveis | 🟡 Médio |
 
 ---
 
-### 📊 Resumo de Tarefas
+## 🟢 PRIORIDADE BAIXA (Implementar por Último)
 
-| Prioridade | Quantidade | Foco |
-|------------|------------|------|
+Melhorias, refinamentos e funcionalidades extras.
+
+### Melhorias de UX e Funcionalidades Extras
+
+| # | Tarefa | Descrição | Complexidade |
+|---|--------|-----------|--------------|
+| 43 | Página Dashboard | Criar tela inicial com cards resumindo: associados ativos, despesas do mês e boletos pendentes | 🟡 Médio |
+| 44 | Cards de Métricas | Criar componente reutilizável para exibir número + label (ex: "150 Associados Ativos") | 🟢 Fácil |
+| 45 | Componente ErrorMessage | Criar componente para exibir erros com ícone, mensagem e botão "Tentar novamente" | 🟢 Fácil |
+| 46 | Estado de Loading nas Páginas | Exibir Spinner enquanto dados estão sendo carregados | 🟢 Fácil |
+| 47 | Estado de Lista Vazia | Exibir mensagem amigável quando não houver dados para mostrar | 🟢 Fácil |
+| 48 | Feedback Visual nos Forms | Destacar campos obrigatórios com asterisco e bordas vermelhas em caso de erro | 🟡 Médio |
+| 49 | Mensagem de Sucesso | Exibir confirmação visual após salvar/excluir com sucesso | 🟢 Fácil |
+| 50 | Máscaras de Input | Implementar máscaras para CPF/CNPJ e telefone (opcional, usar biblioteca) | 🟡 Médio |
+| 51 | Breadcrumb | Criar navegação em migalhas de pão para indicar localização atual | 🟢 Fácil |
+| 52 | Página 404 | Criar tela para rotas não encontradas com link para voltar ao início | 🟢 Fácil |
+| 53 | Tema Visual Consistente | Padronizar cores, espaçamentos e tipografia em toda a aplicação | 🟡 Médio |
+| 54 | Documentação Básica | Criar README com instruções de instalação e descrição dos componentes | 🟢 Fácil |
+
+---
+
+## 📊 Resumo Geral
+
+| Prioridade | Quantidade | Descrição |
+|------------|------------|-----------|
 | 🔴 Alta | 9 tarefas | Componentes UI base |
-| 🟠 Média | 43 tarefas | Módulos principais |
-| 🟢 Baixa | 8 tarefas | Melhorias e extras |
-| **Total** | **60 tarefas** | - |
+| 🟠 Média | 33 tarefas | Módulos principais (Associados, Despesas, Boletos/PIX) |
+| 🟢 Baixa | 12 tarefas | Melhorias de UX e extras |
+| **Total** | **54 tarefas** | — |
+
+---
+
+## 🚀 Sugestão de Distribuição por Semana
+
+| Semana | Foco | Tarefas |
+|--------|------|---------|
+| 1 | Componentes Base | #1 a #9 |
+| 2 | Módulo Associados | #10 a #20 |
+| 3 | Módulo Despesas | #21 a #30 |
+| 4 | Módulo Boletos/PIX | #31 a #42 |
+| 5 | Melhorias e Finalização | #43 a #54 |
 
 ---
 
