@@ -17,16 +17,6 @@ export function Dashboard() {
                         Visão geral da Associação Comercial de Campina Grande.
                     </p>
                 </div>
-
-                {/* 3. Controles (Input + Botão) alinhados à direita */}
-                <div className={styles.controls}>
-                    <Input
-                        placeholder="Buscar transação..."
-                        className={styles.inputSearch}
-                    />
-                    {/* Botão que abre o modal ao clicar */}
-                    <Button onClick={() => setIsModalOpen(true)}>Nova Despesa</Button>
-                </div>
             </div>
 
             {/* 4. Grid de Cards Principais (KPIs) */}

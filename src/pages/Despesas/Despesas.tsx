@@ -16,7 +16,7 @@ export function Despesas() {
                     Este módulo será desenvolvido pelos alunos.
                 </p>
                 <p className={styles.placeholderHint}>
-                    Consulte o arquivo README.md nesta pasta para ver as tarefas.
+                    Consulte o arquivo README.md para ver as tarefas da Fase B
                 </p>
             </div>
         </div>
