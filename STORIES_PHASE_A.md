@@ -1,79 +1,177 @@
-# 📋 Backlog da Fase A: Gestão de Associados
+# 💰 Gestão Financeira - ACCG (Associação Comercial de Campina Grande)
 
-**Autor:** Tech Lead  
-**Para:** Time de Desenvolvimento (Estagiários)  
-**Status:** Pronto para Desenvolvimento
+> **Status:** POC/MVP (Prova de Conceito)  
+> **Público:** Desenvolvedores Iniciantes em React
+
+Bem-vindo ao projeto! Este é o **Front-end** do sistema de gestão financeira da **Associação Comercial de Campina Grande (ACCG)**.
 
 ---
 
 ## 🧭 Visão Geral
-Nesta fase, focaremos em permitir que a ACCG gerencie seus associados. Precisamos exibir quem são os membros e permitir o cadastro de novos.
+
+O sistema permite gerenciar as finanças da ACCG através de três módulos principais:
+1.  **Associados:** Cadastro e listagem de membros.
+2.  **Financeiro:** Controle de despesas (livro caixa).
+3.  **Cobrança:** Geração de boletos e PIX.
+
+### Tecnologias
+-   **React + Vite:** Core da aplicação.
+-   **TypeScript:** Tipagem estática para segurança.
+-   **CSS Modules:** Estilização isolada.
+-   **React Router:** Navegação.
 
 ---
 
-## 🏷️ US01: Card de Identificação do Membro
-**Objetivo:** Criar um componente visual reutilizável que exibe o resumo de um associado.
+## 🏗 Estado Atual da Aplicação
 
-### 📝 Descrição Técnica
-Precisamos exibir os dados básicos de um membro (Nome, Foto/Ícone, Status, Tipo de Pessoa) em um formato de "cartão". Este componente será usado na listagem.
+O ambiente já está **100% configurado**. As tarefas de infraestrutura ("Senior Tasks") foram finalizadas:
 
-### 📍 Onde mexer
-1.  Crie a pasta: `src/components/business/members`
-2.  Crie o arquivo: `src/components/business/members/MemberCard.tsx`
-3.  Crie os estilos: `src/components/business/members/styles.module.css`
+### 1. O que já está pronto?
+-   ✅ **Rotas e Layout:** Navegação configurada (`src/routes`) usando o layout padrão (`src/layouts`).
+-   ✅ **UI Kit (Módulo 1):** Componentes base (`Button`, `Input`, `Card`, `Modal`, `Table`...) prontos em `src/components/ui`.
+-   ✅ **Dados Mockados:** Arquivos JSON para simular o banco de dados em `src/data`.
+-   ✅ **Tipagem:** Interfaces TypeScript definidas em `src/types`.
 
-### 💡 Dicas de Implementação
--   Use o componente base `<Card>` do nosso UI Kit para envolver o conteúdo.
--   Use o componente `<Badge>` para mostrar o status ("ativo" = sucesso, "inativo" = erro/cinza).
--   **Props Sugeridas:**
-    ```typescript
-    interface MemberCardProps {
-        member: Associado; // Importe a interface de @/types/associado
-    }
-    ```
--   Para o ícone, use `User` (pessoa física) e `Building2` (pessoa jurídica) da biblioteca `lucide-react`.
-
----
-
-## 🏷️ US02: Tela de Listagem de Associados
-**Objetivo:** Exibir todos os associados cadastrados em formato de tabela ou grid.
-
-### 📝 Descrição Técnica
-A tela atual de Associados é apenas um placeholder. Precisamos transformá-la para consumir os dados do mock e listá-los.
-
-### 📍 Onde mexer
--   Arquivo: `src/pages/Associados/Associados.tsx`
-
-### 💡 Dicas de Implementação
-1.  Importe os dados de teste: `import { membersMock } from '@/data/members.mock'`.
-2.  Utilize o componente `<PageTitle>` para o cabeçalho.
-3.  **Desafio:** O Tech Lead sugere duas validações visuais:
-    -   Se tiver poucos items, mostre usando o componente `<Table>`.
-    -   (Opcional) Tente criar um grid usando o `MemberCard` que você criou na US01 para ver como fica.
-4.  Lembre-se de adicionar um botão "Novo Associado" no topo da página.
+### 2. Estrutura de Pastas
+```
+src/
+├── assets/        # Imagens e ícones
+├── components/
+│   ├── ui/        # SEU KIT DE FERRAMENTAS (Use esses componentes!)
+│   └── business/  # ONDE VOCÊS VÃO TRABALHAR (Ex: MemberCard, BoletoGenerator)
+├── data/          # Dados fictícios para teste (Members, Finance...)
+├── layouts/       # Sidebar e Header (Não precisa mexer)
+├── pages/         # Telas da aplicação (Associados, Despesas...)
+├── routes/        # Arquivo de rotas
+├── styles/        # CSS global
+└── types/         # Contratos de dados (Interfaces)
+```
 
 ---
 
-## 🏷️ US03: Formulário de Cadastro
-**Objetivo:** Criar a tela para adicionar novos membros.
+## 🚀 Como Rodar
 
-### 📝 Descrição Técnica
-Precisamos de uma rota e uma tela onde o usuário possa preencher Nome, CPF/CNPJ e Email.
-
-### 📍 Onde mexer
-1.  Crie o arquivo: `src/pages/Associados/Form.tsx`
-2.  Registre a nova rota em `src/routes/AppRoutes.tsx` (ex: `/associados/novo`).
-
-### 💡 Dicas de Implementação
--   Use o componente `<Input>` para cada campo.
--   Use o componente `<Button>` para enviar.
--   **Hook:** Use `useState` para guardar os valores do formulário (ex: `const [formData, setFormData] = useState({...})`).
--   **Submit:** No `onSubmit`, por enquanto, apenas faça um `console.log(formData)` e exiba um `alert('Associado salvo!')`. Não tente conectar na API real ainda (Fase E).
--   Não esqueça do botão "Voltar" (tip: use `useNavigate` do react-router-dom).
+1.  **Instalar:** `npm install`
+2.  **Rodar:** `npm run dev`
+3.  **Acessar:** `http://localhost:5173`
 
 ---
 
-## 🎨 Referência Visual
-Está com dúvida de como montar a tela?
-👉 **Consulte o arquivo:** `src/pages/Dashboard/Dashboard.tsx`.
-Ele contém exemplos práticos de como usar Títulos, Tabelas, Botões e Inputs alinhados. **Copie e cole os padrões de lá!**
+## 🎨 Exemplo de Implementação (Dashboard)
+
+Antes de começar, **olhem o arquivo** `src/pages/Dashboard/Dashboard.tsx`.
+Ele funciona como um "gabarito" de como usar os componentes do UI Kit. Nele vocês vão encontrar exemplos de:
+-   **Estrutura de Página:** Uso do `<PageTitle>` e organização do layout.
+-   **Ações:** Como usar `<Input>` e `<Button>` juntos.
+-   **Dados:** Como exibir informações em `<Card>` e `<Table>`.
+-   **Interatividade:** Exemplo real de como abrir um `<Modal>` usando `useState`.
+
+Use o dashboard como base para criar as telas de Associados e Financeiro!
+
+---
+
+## 📋 Suas Tarefas
+
+> **💡 Dica Importante:** Antes de criar um componente do zero, verifique se já não existe algo pronto em `src/components/ui`. Consulte o `README.md` dentro de cada pasta de componente para aprender a usar!
+
+### 🟢 Fase A: Gestão de Associados
+**Foco:** Cadastro e listagem de membros.
+
+> 📘 **Guia Técnico:**
+> *   [US01: Card de Identificação do Membro](./STORIES_PHASE_A.md)
+> *   [US02: Tela de Listagem de Associados](./STORIES_PHASE_A.md)
+> *   [US03: Formulário de Cadastro](./STORIES_PHASE_A.md)
+
+- [ ] **Componente: Card de Membro**
+    -   **Onde:** `src/components/business/members/MemberCard.tsx`
+    -   **O que fazer:** Criar um card que mostra a foto, nome e status do associado. Use o componente `<Card>` e `<Badge>` do UI Kit.
+- [ ] **Tela: Listagem**
+    -   **Onde:** `src/pages/Associados/index.tsx`
+    -   **O que fazer:** Listar os dados de `src/data/members.mock.ts` usando o componente `<Table>`.
+- [ ] **Tela: Formulário**
+    -   **Onde:** `src/pages/Associados/Form.tsx`
+    -   **O que fazer:** Criar formulário de cadastro (Nome, CPF, Email) usando `<Input>` e `<Button>`.
+
+### 🔵 Fase B: Financeiro (Despesas)
+**Foco:** Controle de gastos e livro caixa.
+
+> 📘 **Guia Técnico:**
+> *   [US04: Componente de Resumo Financeiro](./STORIES_PHASE_B.md)
+> *   [US05: Tela de Livro Caixa](./STORIES_PHASE_B.md)
+> *   [US06: Registro Rápido (Modal)](./STORIES_PHASE_B.md)
+
+- [ ] **Componente: Resumo Financeiro**
+    -   **Onde:** `src/components/business/finance/FinancialSummary.tsx`
+    -   **O que fazer:** 3 cards no topo mostrando "Entradas", "Saídas" e "Saldo Atual".
+- [ ] **Tela: Livro Caixa**
+    -   **Onde:** `src/pages/Despesas/index.tsx`
+    -   **O que fazer:** Tabela de despesas consumindo `src/data/finance.mock.ts`.
+- [ ] **Ação: Nova Despesa**
+    -   **O que fazer:** Botão que abre o componente `<Modal>` para adicionar uma despesa rápida.
+
+### 🟣 Fase C: Cobrança
+**Foco:** Boletos e PIX.
+
+> 📘 **Guia Técnico:**
+> *   [US07: Componente Gerador de Boleto](./STORIES_PHASE_C.md)
+> *   [US08: Tela de Histórico de Cobranças](./STORIES_PHASE_C.md)
+
+- [ ] **Componente: Gerador de Boleto**
+    -   **Onde:** `src/components/business/billing/BoletoGenerator.tsx`
+    -   **O que fazer:** Área para selecionar um associado e gerar um valor de cobrança.
+- [ ] **Tela: Histórico**
+    -   **Onde:** `src/pages/Boletos/index.tsx`
+    -   **O que fazer:** Lista de cobranças geradas (dados em `src/data/accounts.mock.ts`). Destaque vencidos em vermelho.
+
+### 🟡 Fase D: Dashboard (Indicadores)
+**Foco:** Transformar a tela inicial estática em dinâmica.
+
+> 📘 **Guia Técnico:**
+> *   [US09: Indicadores de Associados](./STORIES_PHASE_D.md)
+> *   [US10: Indicadores Financeiros](./STORIES_PHASE_D.md)
+> *   [US11: Indicadores de Cobrança](./STORIES_PHASE_D.md)
+
+- [ ] **Integração de Dados**
+    -   **Onde:** `src/pages/Dashboard/index.tsx`
+    -   **O que fazer:** Importar os Mocks e substituir os números "chumbados" por cálculos reais.
+    -   ex: `const totalAssociados = membersMock.length;`
+
+### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
+**Foco:** Conectar o Front-end à API real (Endpoints Hipotéticos).
+
+> 📘 **Guia Técnico:**
+> *   [US12: Configuração do Cliente Axios](./STORIES_PHASE_E.md)
+> *   [US13: Integração de Associados](./STORIES_PHASE_E.md)
+> *   [US14: Integração Financeira e Boletos](./STORIES_PHASE_E.md)
+
+Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados reais.
+
+**1. Configurar Axios (`src/services/api.ts`)**
+```typescript
+import axios from 'axios';
+export const api = axios.create({
+    baseURL: 'http://api-accg.com.br/api' // URL Hipotética
+});
+```
+
+**2. Endpoints para consumir (Substituir Mocks):**
+
+| Recurso | Método | Endpoint Hipotético | Payload (Body) |
+|---|---|---|---|
+| **Associados** | GET | `/associados` | - |
+| **Criar Associado** | POST | `/associados` | `{ nome, cpf, email }` |
+| **Despesas** | GET | `/despesas` | - |
+| **Criar Despesa** | POST | `/despesas` | `{ descricao, valor, categoria }` |
+| **Boletos** | GET | `/boletos` | - |
+| **Gerar Boleto** | POST | `/boletos/gerar` | `{ associadoId, valor }` |
+
+
+---
+
+## 💡 Dicas de Ouro
+
+1.  **Não invente a roda:** Use `styles.module.css` para tudo. Nada de style inline!
+2.  **Tipagem:** Sempre importe as interfaces de `src/types` (ex: `import { Associado } from '@/types/associado'`).
+3.  **Dúvidas?** Olhe como o `Dashboard.tsx` foi feito. Ele é um bom exemplo de como usar os componentes.
+
+**Bom trabalho, time! 🚀**
