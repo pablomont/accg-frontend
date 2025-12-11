@@ -40,7 +40,7 @@ src/
 │   └── business/  # ONDE VOCÊS VÃO TRABALHAR (Ex: MemberCard, BoletoGenerator)
 ├── data/          # Dados fictícios para teste (Members, Finance...)
 ├── layouts/       # Sidebar e Header (Não precisa mexer)
-├── pages/         # Telas da aplicação (Associados, Despesas...)
+├── pages/         # Componentes da aplicação (Associados, Despesas...)
 ├── routes/        # Arquivo de rotas
 ├── styles/        # CSS global
 └── types/         # Contratos de dados (Interfaces)
@@ -65,7 +65,7 @@ Ele funciona como um "gabarito" de como usar os componentes do UI Kit. Nele voc�
 -   **Dados:** Como exibir informações em `<Card>` e `<Table>`.
 -   **Interatividade:** Exemplo real de como abrir um `<Modal>` usando `useState`.
 
-Use o dashboard como base para criar as telas de Associados e Financeiro!
+Use o dashboard como base para criar as páginas de Associados e Financeiro!
 
 ---
 
@@ -80,18 +80,9 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 
 > 📘 **Guia Técnico:**
 > *   [US01: Card de Identificação do Membro](https://github.com/pablomont/accg-frontend/issues/1)
-> *   [US02: Tela de Listagem de Associados](https://github.com/pablomont/accg-frontend/issues/2)
+> *   [US02: Componente de Listagem de Associados](https://github.com/pablomont/accg-frontend/issues/2)
 > *   [US03: Formulário de Cadastro](https://github.com/pablomont/accg-frontend/issues/3)
 
-- [ ] **Componente: Card de Membro**
-    -   **Onde:** `src/components/business/members/MemberCard.tsx`
-    -   **O que fazer:** Criar um card que mostra a foto, nome e status do associado. Use o componente `<Card>` e `<Badge>` do UI Kit.
-- [ ] **Tela: Listagem**
-    -   **Onde:** `src/pages/Associados/index.tsx`
-    -   **O que fazer:** Listar os dados de `src/data/members.mock.ts` usando o componente `<Table>`.
-- [ ] **Tela: Formulário**
-    -   **Onde:** `src/pages/Associados/Form.tsx`
-    -   **O que fazer:** Criar formulário de cadastro (Nome, CPF, Email) usando `<Input>` e `<Button>`.
 
 ### 🔵 Fase B: Financeiro (Despesas)
 **Foco:** Controle de gastos e livro caixa.
@@ -100,17 +91,9 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 
 > 📘 **Guia Técnico:**
 > *   [US04: Componente de Resumo Financeiro](https://github.com/pablomont/accg-frontend/issues/4)
-> *   [US05: Tela de Livro Caixa](https://github.com/pablomont/accg-frontend/issues/5)
+> *   [US05: Componente de Livro Caixa](https://github.com/pablomont/accg-frontend/issues/5)
 > *   [US06: Registro Rápido (Modal)](https://github.com/pablomont/accg-frontend/issues/6)
 
-- [ ] **Componente: Resumo Financeiro**
-    -   **Onde:** `src/components/business/finance/FinancialSummary.tsx`
-    -   **O que fazer:** 3 cards no topo mostrando "Entradas", "Saídas" e "Saldo Atual".
-- [ ] **Tela: Livro Caixa**
-    -   **Onde:** `src/pages/Despesas/index.tsx`
-    -   **O que fazer:** Tabela de despesas consumindo `src/data/finance.mock.ts`.
-- [ ] **Ação: Nova Despesa**
-    -   **O que fazer:** Botão que abre o componente `<Modal>` para adicionar uma despesa rápida.
 
 ### 🟣 Fase C: Cobrança
 **Foco:** Boletos e PIX.
@@ -120,14 +103,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 
 > 📘 **Guia Técnico:**
 > *   [US07: Componente Gerador de Boleto](https://github.com/pablomont/accg-frontend/issues/7)
-> *   [US08: Tela de Histórico de Cobranças](https://github.com/pablomont/accg-frontend/issues/8)
+> *   [US08: Componente de Histórico de Cobranças](https://github.com/pablomont/accg-frontend/issues/8)
 
-- [ ] **Componente: Gerador de Boleto**
-    -   **Onde:** `src/components/business/billing/BoletoGenerator.tsx`
-    -   **O que fazer:** Área para selecionar um associado e gerar um valor de cobrança.
-- [ ] **Tela: Histórico**
-    -   **Onde:** `src/pages/Boletos/index.tsx`
-    -   **O que fazer:** Lista de cobranças geradas (dados em `src/data/accounts.mock.ts`). Destaque vencidos em vermelho.
 
 ### 🟡 Fase D: Dashboard (Indicadores)
 **Foco:** Transformar a tela inicial estática em dinâmica.
@@ -139,11 +116,6 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 > *   [US09: Indicadores de Associados](https://github.com/pablomont/accg-frontend/issues/9)
 > *   [US10: Indicadores Financeiros](https://github.com/pablomont/accg-frontend/issues/10)
 > *   [US11: Indicadores de Cobrança](https://github.com/pablomont/accg-frontend/issues/11)
-
-- [ ] **Integração de Dados**
-    -   **Onde:** `src/pages/Dashboard/index.tsx`
-    -   **O que fazer:** Importar os Mocks e substituir os números "chumbados" por cálculos reais.
-    -   ex: `const totalAssociados = membersMock.length;`
 
 ### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
 **Foco:** Conectar o Front-end à API real.
