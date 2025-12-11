@@ -69,6 +69,10 @@ Use o dashboard como base para criar as páginas de Associados e Financeiro!
 
 ---
 
+> 📘 **Guia Técnico:**
+> *   [📄 Guia de Contribuição (CONTRIBUTING.md)](./CONTRIBUTING.md)
+> *   [🎥 Tutorial: Workflow Git (Vídeo)](./tutorial-workflow.mov)
+
 ## 📋 Suas Tarefas
 
 > **💡 Dica Importante:** Antes de criar um componente do zero, verifique se já não existe algo pronto em `src/components/ui`. Consulte o `README.md` dentro de cada pasta de componente para aprender a usar!
