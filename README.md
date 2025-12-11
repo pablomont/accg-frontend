@@ -57,6 +57,19 @@ src/
 
 ---
 
+## 🎨 Exemplo de Implementação (Dashboard)
+
+Antes de começar, **olhem o arquivo** `src/pages/Dashboard/Dashboard.tsx`.
+Ele funciona como um "gabarito" de como usar os componentes do UI Kit. Nele vocês vão encontrar exemplos de:
+-   **Estrutura de Página:** Uso do `<PageTitle>` e organização do layout.
+-   **Ações:** Como usar `<Input>` e `<Button>` juntos.
+-   **Dados:** Como exibir informações em `<Card>` e `<Table>`.
+-   **Interatividade:** Exemplo real de como abrir um `<Modal>` usando `useState`.
+
+Use o dashboard como base para criar as telas de Associados e Financeiro!
+
+---
+
 ## 📋 Suas Tarefas
 
 > **💡 Dica Importante:** Antes de criar um componente do zero, verifique se já não existe algo pronto em `src/components/ui`. Consulte o `README.md` dentro de cada pasta de componente para aprender a usar!

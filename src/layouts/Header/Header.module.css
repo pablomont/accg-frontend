@@ -1,0 +1,67 @@
+.header {
+    height: var(--header-height);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-200);
+    padding: 0 var(--spacing-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-sticky);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.logoText {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-800);
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .title {
+        display: none;
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+}
+
+.userName {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+}
+
+.userAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-500);
+}

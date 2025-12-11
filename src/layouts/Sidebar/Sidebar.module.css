@@ -1,0 +1,85 @@
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--color-white);
+    border-right: 1px solid var(--color-gray-200);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: var(--z-index-fixed);
+}
+
+.titleSection {
+    height: var(--header-height);
+    padding: 0 var(--spacing-6);
+    border-bottom: 1px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoImage {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
+.nav {
+    flex: 1;
+    padding: var(--spacing-4);
+    overflow-y: auto;
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--border-radius-md);
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast);
+}
+
+.navLink:hover {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-800);
+}
+
+.navLinkActive {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.navLinkActive:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+}
+
+.navIcon {
+    flex-shrink: 0;
+}
+
+.navLabel {
+    font-size: var(--font-size-sm);
+}
+
+.footer {
+    padding: var(--spacing-4);
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.footerText {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-400);
+    text-align: center;
+    margin: 0;
+}

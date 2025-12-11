@@ -1,0 +1,138 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+}
+
+.welcome {
+    margin-bottom: var(--spacing-8);
+}
+
+.welcomeTitle {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-2);
+}
+
+.welcomeText {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-500);
+    margin-top: var(--spacing-1);
+}
+
+.actions {
+    display: flex;
+    gap: var(--spacing-4);
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    justify-content: flex-end;
+    /* Ensure right alignment within container */
+}
+
+/* Force strict alignment for Input wrapper inside controls */
+.controls>div {
+    margin: 0 !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.inputSearch {
+    width: 250px;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-6);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-800);
+    margin: 0;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.cardIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cardPrimary .cardIcon {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--color-primary);
+}
+
+.cardSuccess .cardIcon {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+}
+
+.cardWarning .cardIcon {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--color-warning);
+}
+
+.cardDanger .cardIcon {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--color-danger);
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.cardValue {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+}
+
+.cardTitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
