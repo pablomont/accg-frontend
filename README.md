@@ -1,7 +1,6 @@
 # 💰 Gestão Financeira - ACCG (Associação Comercial de Campina Grande)
 
 > **Status:** POC/MVP (Prova de Conceito)  
-> **Público:** Desenvolvedores Iniciantes em React
 
 Bem-vindo ao projeto! Este é o **Front-end** do sistema de gestão financeira da **Associação Comercial de Campina Grande (ACCG)**.
 
