@@ -1,6 +1,7 @@
 # 💰 Gestão Financeira - ACCG (Associação Comercial de Campina Grande)
 
 > **Status:** POC/MVP (Prova de Conceito)  
+> **Público:** Desenvolvedores Iniciantes em React
 
 Bem-vindo ao projeto! Este é o **Front-end** do sistema de gestão financeira da **Associação Comercial de Campina Grande (ACCG)**.
 
@@ -76,6 +77,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟢 Fase A: Gestão de Associados
 **Foco:** Cadastro e listagem de membros.
 
+> 📘 **Guia Técnico:** [Ver User Stories da Fase A](./STORIES_PHASE_A.md)
+
 - [ ] **Componente: Card de Membro**
     -   **Onde:** `src/components/business/members/MemberCard.tsx`
     -   **O que fazer:** Criar um card que mostra a foto, nome e status do associado. Use o componente `<Card>` e `<Badge>` do UI Kit.
@@ -89,6 +92,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🔵 Fase B: Financeiro (Despesas)
 **Foco:** Controle de gastos e livro caixa.
 
+> 📘 **Guia Técnico:** [Ver User Stories da Fase B](./STORIES_PHASE_B.md)
+
 - [ ] **Componente: Resumo Financeiro**
     -   **Onde:** `src/components/business/finance/FinancialSummary.tsx`
     -   **O que fazer:** 3 cards no topo mostrando "Entradas", "Saídas" e "Saldo Atual".
@@ -101,6 +106,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟣 Fase C: Cobrança
 **Foco:** Boletos e PIX.
 
+> 📘 **Guia Técnico:** [Ver User Stories da Fase C](./STORIES_PHASE_C.md)
+
 - [ ] **Componente: Gerador de Boleto**
     -   **Onde:** `src/components/business/billing/BoletoGenerator.tsx`
     -   **O que fazer:** Área para selecionar um associado e gerar um valor de cobrança.
@@ -111,6 +118,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟡 Fase D: Dashboard (Indicadores)
 **Foco:** Transformar a tela inicial estática em dinâmica.
 
+> 📘 **Guia Técnico:** [Ver User Stories da Fase D](./STORIES_PHASE_D.md)
+
 - [ ] **Integração de Dados**
     -   **Onde:** `src/pages/Dashboard/index.tsx`
     -   **O que fazer:** Importar os Mocks e substituir os números "chumbados" por cálculos reais.
@@ -118,6 +127,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 
 ### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
 **Foco:** Conectar o Front-end à API real (Endpoints Hipotéticos).
+
+> 📘 **Guia Técnico:** [Ver User Stories da Fase E](./STORIES_PHASE_E.md)
 
 Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados reais.
 
