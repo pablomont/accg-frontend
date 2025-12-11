@@ -71,7 +71,7 @@ Use o dashboard como base para criar as páginas de Associados e Financeiro!
 
 > 📘 **Guia Técnico:**
 > *   [📄 Guia de Contribuição (CONTRIBUTING.md)](./CONTRIBUTING.md)
-> *   [🎥 Tutorial: Workflow Git (Vídeo)](./tutorial-workflow.mov)
+> *   [🎥 Tutorial: Workflow Git (Vídeo)]([./tutorial-workflow.mov](https://drive.google.com/file/d/1huR_Ugfu8SwzVyRYqWllqq4GAfx0ZbAo/view?usp=sharing))
 
 ## 📋 Suas Tarefas
 
