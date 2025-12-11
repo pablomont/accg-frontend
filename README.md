@@ -154,7 +154,7 @@ export const api = axios.create({
 **👥 Responsável:** Pablo Monteiro Santos
 
 > 📘 **Guia Técnico:**
-> *   [US15: Guia de Contribuição e Workflow](https://github.com/pablomont/accg-frontend/issues/15)
+> *   [US15: Guia de Contribuição e Workflow](https://github.com/pablomont/accg-frontend/issues/17)
 
 
 ---
