@@ -97,7 +97,7 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🔵 Fase B: Financeiro (Despesas)
 **Foco:** Controle de gastos e livro caixa.
 
-**👥 Responsáveis:** Rodrigues Matheus Lima, EMANUEL VITTOR FERREIRA BARBOSA, Luciano dos Santos Silva
+**👥 Responsáveis:** Rodrigues Matheus Lima, Emanuel Vittor Ferreira Barbosa, Luciano dos Santos Silva
 
 > 📘 **Guia Técnico:**
 > *   [US04: Componente de Resumo Financeiro](https://github.com/pablomont/accg-frontend/issues/4)
