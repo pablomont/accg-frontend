@@ -1,7 +1,5 @@
 # 💰 Gestão Financeira - ACCG (Associação Comercial de Campina Grande)
 
-
-
 > **Status:** POC/MVP (Prova de Conceito)  
 > **Público:** Desenvolvedores Iniciantes em React
 
