@@ -137,7 +137,7 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
     -   ex: `const totalAssociados = membersMock.length;`
 
 ### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
-**Foco:** Conectar o Front-end à API real (Endpoints Hipotéticos).
+**Foco:** Conectar o Front-end à API real.
 
 > 📘 **Guia Técnico:**
 > *   [US12: Configuração do Cliente Axios](https://github.com/pablomont/accg-frontend/issues/12)
