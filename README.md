@@ -77,6 +77,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟢 Fase A: Gestão de Associados
 **Foco:** Cadastro e listagem de membros.
 
+**👥 Responsáveis:** Suelle Ferreira Maciel, Horlan Silva de Lacerda, Raul Confessor Oliveira Silva
+
 > 📘 **Guia Técnico:**
 > *   [US01: Card de Identificação do Membro](https://github.com/pablomont/accg-frontend/issues/1)
 > *   [US02: Tela de Listagem de Associados](https://github.com/pablomont/accg-frontend/issues/2)
@@ -95,6 +97,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🔵 Fase B: Financeiro (Despesas)
 **Foco:** Controle de gastos e livro caixa.
 
+**👥 Responsáveis:** Rodrigues Matheus Lima, EMANUEL VITTOR FERREIRA BARBOSA, Luciano dos Santos Silva
+
 > 📘 **Guia Técnico:**
 > *   [US04: Componente de Resumo Financeiro](https://github.com/pablomont/accg-frontend/issues/4)
 > *   [US05: Tela de Livro Caixa](https://github.com/pablomont/accg-frontend/issues/5)
@@ -112,6 +116,9 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟣 Fase C: Cobrança
 **Foco:** Boletos e PIX.
 
+**👥 Responsáveis:** Lethycia Zenaide Queiroz Melo, Lara Marina Almeida Fernandes
+
+
 > 📘 **Guia Técnico:**
 > *   [US07: Componente Gerador de Boleto](https://github.com/pablomont/accg-frontend/issues/7)
 > *   [US08: Tela de Histórico de Cobranças](https://github.com/pablomont/accg-frontend/issues/8)
@@ -126,6 +133,9 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟡 Fase D: Dashboard (Indicadores)
 **Foco:** Transformar a tela inicial estática em dinâmica.
 
+**👥 Responsáveis:** Danilo dos Santos Gomes, Julia Santos Arruda, Mayara de Sousa Moura
+
+
 > 📘 **Guia Técnico:**
 > *   [US09: Indicadores de Associados](https://github.com/pablomont/accg-frontend/issues/9)
 > *   [US10: Indicadores Financeiros](https://github.com/pablomont/accg-frontend/issues/10)
@@ -138,6 +148,8 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 
 ### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
 **Foco:** Conectar o Front-end à API real.
+
+**👥 Responsáveis:** Héllida Louize Lima Duarte Gomes, Isadora Rodrigues Bessa Silva, Lucas fernando da silva santos, Melquisedeque Gomes de Medeiros
 
 > 📘 **Guia Técnico:**
 > *   [US12: Configuração do Cliente Axios](https://github.com/pablomont/accg-frontend/issues/12)
