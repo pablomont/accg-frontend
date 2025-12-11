@@ -77,7 +77,10 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟢 Fase A: Gestão de Associados
 **Foco:** Cadastro e listagem de membros.
 
-> 📘 **Guia Técnico:** [Ver User Stories da Fase A](./STORIES_PHASE_A.md)
+> 📘 **Guia Técnico:**
+> *   [US01: Card de Identificação do Membro](./STORIES_PHASE_A.md)
+> *   [US02: Tela de Listagem de Associados](./STORIES_PHASE_A.md)
+> *   [US03: Formulário de Cadastro](./STORIES_PHASE_A.md)
 
 - [ ] **Componente: Card de Membro**
     -   **Onde:** `src/components/business/members/MemberCard.tsx`
@@ -92,7 +95,10 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🔵 Fase B: Financeiro (Despesas)
 **Foco:** Controle de gastos e livro caixa.
 
-> 📘 **Guia Técnico:** [Ver User Stories da Fase B](./STORIES_PHASE_B.md)
+> 📘 **Guia Técnico:**
+> *   [US04: Componente de Resumo Financeiro](./STORIES_PHASE_B.md)
+> *   [US05: Tela de Livro Caixa](./STORIES_PHASE_B.md)
+> *   [US06: Registro Rápido (Modal)](./STORIES_PHASE_B.md)
 
 - [ ] **Componente: Resumo Financeiro**
     -   **Onde:** `src/components/business/finance/FinancialSummary.tsx`
@@ -106,7 +112,9 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟣 Fase C: Cobrança
 **Foco:** Boletos e PIX.
 
-> 📘 **Guia Técnico:** [Ver User Stories da Fase C](./STORIES_PHASE_C.md)
+> 📘 **Guia Técnico:**
+> *   [US07: Componente Gerador de Boleto](./STORIES_PHASE_C.md)
+> *   [US08: Tela de Histórico de Cobranças](./STORIES_PHASE_C.md)
 
 - [ ] **Componente: Gerador de Boleto**
     -   **Onde:** `src/components/business/billing/BoletoGenerator.tsx`
@@ -118,7 +126,10 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🟡 Fase D: Dashboard (Indicadores)
 **Foco:** Transformar a tela inicial estática em dinâmica.
 
-> 📘 **Guia Técnico:** [Ver User Stories da Fase D](./STORIES_PHASE_D.md)
+> 📘 **Guia Técnico:**
+> *   [US09: Indicadores de Associados](./STORIES_PHASE_D.md)
+> *   [US10: Indicadores Financeiros](./STORIES_PHASE_D.md)
+> *   [US11: Indicadores de Cobrança](./STORIES_PHASE_D.md)
 
 - [ ] **Integração de Dados**
     -   **Onde:** `src/pages/Dashboard/index.tsx`
@@ -128,7 +139,10 @@ Use o dashboard como base para criar as telas de Associados e Financeiro!
 ### 🔴 Fase E: Integração com Backend (Remoção de Mocks)
 **Foco:** Conectar o Front-end à API real (Endpoints Hipotéticos).
 
-> 📘 **Guia Técnico:** [Ver User Stories da Fase E](./STORIES_PHASE_E.md)
+> 📘 **Guia Técnico:**
+> *   [US12: Configuração do Cliente Axios](./STORIES_PHASE_E.md)
+> *   [US13: Integração de Associados](./STORIES_PHASE_E.md)
+> *   [US14: Integração Financeira e Boletos](./STORIES_PHASE_E.md)
 
 Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados reais.
 
