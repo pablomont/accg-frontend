@@ -73,6 +73,18 @@ Use o dashboard como base para criar as páginas de Associados e Financeiro!
 
 > **💡 Dica Importante:** Antes de criar um componente do zero, verifique se já não existe algo pronto em `src/components/ui`. Consulte o `README.md` dentro de cada pasta de componente para aprender a usar!
 
+### 🧹 Governança & Padronização (Tarefa de Exemplo)
+**Foco:** Organização do repositório e regras de contribuição.
+**👥 Responsável:** Pablo Monteiro Santos
+
+> 📘 **Guia Técnico:**
+> *   [US15: Guia de Contribuição e Workflow](./CONTRIBUTING.md)
+
+- [ ] **Documentação: CONTRIBUTING.md**
+    -   **O que fazer:** Criar um arquivo `CONTRIBUTING.md` na raiz do projeto.
+    -   **Conteúdo:** Explicar o padrão de branches (`feature/nome-da-task`), como abrir um PR e as regras de commit.
+    -   **Objetivo:** Servir de referência para todos.
+
 ### 🟢 Fase A: Gestão de Associados
 **Foco:** Cadastro e listagem de membros.
 
