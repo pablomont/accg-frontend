@@ -1,26 +1,54 @@
-import { Receipt } from 'lucide-react';
-import styles from './Despesas.module.css';
+import { Receipt } from "lucide-react";
+import styles from "./Despesas.module.css";
+import { Badge } from "@/components/ui";
+import { PageTitle } from "@/components/ui";
+import { financeMock, categoriesMock } from "@/data/finance.mock";
+import { Table } from "@/components/ui";
 
 export function Despesas() {
-    return (
-        <div className={styles.page}>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Despesas</h1>
-                <p className={styles.subtitle}>Controle de despesas e plano de contas</p>
-            </div>
+  const getCategoriaNome = (categoriaId: string) => {
+    const categoria = categoriesMock.find((c) => c.id === categoriaId);
+    return categoria ? categoria.nome : "—";
+  };
+  return (
+    <div className={styles.page}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Despesas</h1>
+        <p className={styles.subtitle}>
+          Controle de despesas e plano de contas
+        </p>
+      </div>
 
-            <div className={styles.placeholder}>
-                <Receipt className={styles.placeholderIcon} size={80} />
-                <h2 className={styles.placeholderTitle}>Módulo em Desenvolvimento</h2>
-                <p className={styles.placeholderText}>
-                    Este módulo será desenvolvido pelos alunos.
-                </p>
-                <p className={styles.placeholderHint}>
-                    Consulte o arquivo README.md para ver as tarefas da Fase B
-                </p>
-            </div>
-        </div>
-    );
+      <PageTitle>Livro Caixa</PageTitle>
+
+      <Table>
+        <thead>
+          <th>Data</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Valor</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          {financeMock.map((despesa) => (
+            <tr key={despesa.id}>
+              <td>{new Date(despesa.data).toLocaleDateString("pt-BR")}</td>
+              <td>{despesa.descricao}</td>
+              <td>{getCategoriaNome(despesa.categoriaId)}</td>
+              <td>R$ {despesa.valor.toFixed(2)}</td>
+              <td>
+                {despesa.status === "pago" ? (
+                  <Badge variant="success">Pago</Badge>
+                ) : (
+                  <Badge variant="warning">Pendente</Badge>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
 }
 
 export default Despesas;
