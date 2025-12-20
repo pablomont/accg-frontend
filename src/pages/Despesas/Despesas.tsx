@@ -32,7 +32,12 @@ export function Despesas() {
             <td>{despesa.descricao}</td>
             <td>{despesa.categoriaId}</td>
             <td>R$ {despesa.valor.toFixed(2)}</td>
-            <td>{despesa.status}</td>
+            <td>{despesa.status === "pago" ? (
+                <Badge variant="success">Pago</Badge>
+            ) : (
+                <Badge variant="warning">Pendente</Badge>
+            )}</td>
+            
           </tr>
         ))}
         </tbody>
