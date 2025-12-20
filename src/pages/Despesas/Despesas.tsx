@@ -13,16 +13,8 @@ export function Despesas() {
                 <p className={styles.subtitle}>Controle de despesas e plano de contas</p>
             </div>
 
-            <div className={styles.placeholder}>
-                <Receipt className={styles.placeholderIcon} size={80} />
-                <h2 className={styles.placeholderTitle}>Módulo em Desenvolvimento</h2>
-                <p className={styles.placeholderText}>
-                    Este módulo será desenvolvido pelos alunos.
-                </p>
-                <p className={styles.placeholderHint}>
-                    Consulte o arquivo README.md para ver as tarefas da Fase B
-                </p>
-            </div>
+            <PageTitle>Livro Caixa</PageTitle>
+            
         </div>
     );
 }
