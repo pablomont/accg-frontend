@@ -25,7 +25,17 @@ export function Despesas() {
           <th>Valor</th>
           <th>Status</th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+             {financeMock.map((despesa) => (
+          <tr key={despesa.id}>
+            <td>{new Date(despesa.data).toLocaleDateString('pt-BR')}</td>
+            <td>{despesa.descricao}</td>
+            <td>{despesa.categoriaId}</td>
+            <td>R$ {despesa.valor.toFixed(2)}</td>
+            <td>{despesa.status}</td>
+          </tr>
+        ))}
+        </tbody>
       </Table>
     </div>
   );
