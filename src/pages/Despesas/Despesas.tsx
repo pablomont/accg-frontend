@@ -1,5 +1,9 @@
 import { Receipt } from 'lucide-react';
 import styles from './Despesas.module.css';
+import { Badge } from '@/components/ui';
+import { PageTitle } from '@/components/ui';
+import { financeMock } from '@/data/finance.mock';
+import { Table } from '@/components/ui';
 
 export function Despesas() {
     return (
