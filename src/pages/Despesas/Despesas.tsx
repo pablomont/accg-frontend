@@ -2,10 +2,14 @@ import { Receipt } from "lucide-react";
 import styles from "./Despesas.module.css";
 import { Badge } from "@/components/ui";
 import { PageTitle } from "@/components/ui";
-import { financeMock } from "@/data/finance.mock";
+import { financeMock, categoriesMock } from "@/data/finance.mock";
 import { Table } from "@/components/ui";
 
 export function Despesas() {
+  const getCategoriaNome = (categoriaId: string) => {
+    const categoria = categoriesMock.find((c) => c.id === categoriaId);
+    return categoria ? categoria.nome : "—";
+  };
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -26,20 +30,21 @@ export function Despesas() {
           <th>Status</th>
         </thead>
         <tbody>
-             {financeMock.map((despesa) => (
-          <tr key={despesa.id}>
-            <td>{new Date(despesa.data).toLocaleDateString('pt-BR')}</td>
-            <td>{despesa.descricao}</td>
-            <td>{despesa.categoriaId}</td>
-            <td>R$ {despesa.valor.toFixed(2)}</td>
-            <td>{despesa.status === "pago" ? (
-                <Badge variant="success">Pago</Badge>
-            ) : (
-                <Badge variant="warning">Pendente</Badge>
-            )}</td>
-            
-          </tr>
-        ))}
+          {financeMock.map((despesa) => (
+            <tr key={despesa.id}>
+              <td>{new Date(despesa.data).toLocaleDateString("pt-BR")}</td>
+              <td>{despesa.descricao}</td>
+              <td>{getCategoriaNome(despesa.categoriaId)}</td>
+              <td>R$ {despesa.valor.toFixed(2)}</td>
+              <td>
+                {despesa.status === "pago" ? (
+                  <Badge variant="success">Pago</Badge>
+                ) : (
+                  <Badge variant="warning">Pendente</Badge>
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
