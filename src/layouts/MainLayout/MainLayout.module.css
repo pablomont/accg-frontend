@@ -8,6 +8,7 @@
     margin-left: var(--sidebar-width);
     display: flex;
     flex-direction: column;
+    transition: margin-left 0.3s ease;
 }
 
 .content {
@@ -16,9 +17,12 @@
     overflow-y: auto;
 }
 
-/* Responsividade básica */
 @media (max-width: 1024px) {
     .main {
         margin-left: 0;
     }
+}
+
+.layout.collapsed .main {
+    margin-left: var(--sidebar-width-collapsed);
 }
