@@ -1,5 +1,4 @@
 .sidebar {
-    /*transition: width 0.5s ease; */
     width: var(--sidebar-width);
     height: 100vh;
     background-color: var(--color-white);
@@ -84,43 +83,3 @@
     text-align: center;
     margin: 0;
 }
-
-/* .sidebar.collapsed {
-    width: 82px; 
-} */
-
-/* .toggleBtn {
-    position: absolute;
-    top: 97px;
-    right: -12px; 
-    width: 24px;
-    height: 24px;
-    background-color: #4f46e5;
-    color: white;
-    border: 1px solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-} */
-
-/* .sidebar.collapsed .navLabel,
-.sidebar.collapsed .footerText {
-    display: none;
-} */
-
-/* .sidebar.collapsed .logoImage {
-    width: 45px;
-    height: 40px;
-    object-fit: cover;
-    object-position: 5% center; 
-} */
-
-/* .sidebar.collapsed .navLink {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
-} */
