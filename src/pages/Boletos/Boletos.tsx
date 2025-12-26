@@ -1,4 +1,3 @@
-// import { FileText } from 'lucide-react';
 import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
 import styles from './Boletos.module.css';
 
