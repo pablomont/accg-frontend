@@ -1,0 +1,152 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: var(--color-bg-secondary, #f5f5f5);
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    background-color: var(--color-bg-primary, #ffffff);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary, #1a1a1a);
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #666666);
+    margin: 0;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary, #1a1a1a);
+    margin: 0;
+}
+
+.select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--color-bg-primary, #ffffff);
+    color: var(--color-text-primary, #1a1a1a);
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--color-primary, #007bff);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.select:hover {
+    border-color: var(--color-primary, #007bff);
+}
+
+.selectError {
+    border-color: var(--color-danger, #dc3545);
+}
+
+.selectError:focus {
+    border-color: var(--color-danger, #dc3545);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.errorMessage {
+    font-size: 0.75rem;
+    color: var(--color-danger, #dc3545);
+    margin-top: 0.25rem;
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+}
+
+.halfInput {
+    flex: 1;
+    min-width: 0
+}
+
+.footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+.button {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+}
+
+.modalContent {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.modalText {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary, #333);
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.whatsappButton {
+    background-color: #25D366;
+    border-color: #25D366;
+    color: #fff;
+}
+
+.whatsappButton:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+}
