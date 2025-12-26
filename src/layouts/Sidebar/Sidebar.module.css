@@ -1,5 +1,4 @@
 .sidebar {
-    /* transition: width 0.8s ease;  */
     width: var(--sidebar-width);
     height: 100vh;
     background-color: var(--color-white);
@@ -91,7 +90,7 @@
 
 .toggleBtn {
     position: absolute;
-    top: 97px;
+    top: calc(var(--header-height) - 13px);
     right: -12px; 
     width: 24px;
     height: 24px;
