@@ -1,4 +1,5 @@
-import { FileText } from 'lucide-react';
+// import { FileText } from 'lucide-react';
+import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
 import styles from './Boletos.module.css';
 
 export function Boletos() {
@@ -9,7 +10,7 @@ export function Boletos() {
                 <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
             </div>
 
-            <div className={styles.placeholder}>
+            {/* <div className={styles.placeholder}>
                 <FileText className={styles.placeholderIcon} size={80} />
                 <h2 className={styles.placeholderTitle}>Módulo em Desenvolvimento</h2>
                 <p className={styles.placeholderText}>
@@ -18,7 +19,8 @@ export function Boletos() {
                 <p className={styles.placeholderHint}>
                     Consulte o arquivo README.md para ver as tarefas da Fase C
                 </p>
-            </div>
+            </div> */}
+            <BoletoGenerator/>
         </div>
     );
 }

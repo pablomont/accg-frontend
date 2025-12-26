@@ -1,5 +1,5 @@
 .sidebar {
-    transition: width 0.5s ease; /*animação da transação*/
+    /*transition: width 0.5s ease; */
     width: var(--sidebar-width);
     height: 100vh;
     background-color: var(--color-white);
@@ -85,12 +85,11 @@
     margin: 0;
 }
 
-.sidebar.collapsed {
-    width: 82px; /*largura pequena */
-}
+/* .sidebar.collapsed {
+    width: 82px; 
+} */
 
-/* Seta */
-.toggleBtn {
+/* .toggleBtn {
     position: absolute;
     top: 97px;
     right: -12px; 
@@ -106,25 +105,22 @@
     justify-content: center;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
+} */
 
-/* Esconde os textos*/
-.sidebar.collapsed .navLabel,
+/* .sidebar.collapsed .navLabel,
 .sidebar.collapsed .footerText {
     display: none;
-}
+} */
 
-/* Primeiro icone */
-.sidebar.collapsed .logoImage {
+/* .sidebar.collapsed .logoImage {
     width: 45px;
     height: 40px;
     object-fit: cover;
     object-position: 5% center; 
-}
+} */
 
-/* Centraliza o resto dos ícones quando fechado */
-.sidebar.collapsed .navLink {
+/* .sidebar.collapsed .navLink {
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
-}
+} */
