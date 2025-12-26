@@ -110,7 +110,7 @@ export function BoletoGenerator() {
             <Modal isOpen={showSuccessModal} onClose={handleCloseModal} title="Cobrança Gerada!">
                 <div className={styles.modalContent}>
                     <p className={styles.modalText}>
-                        Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso.
+                        Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
                     </p>
                     {/* Exibição de Multa e Juros
                     {(formData.multa ?? 0) > 0 && <p className={styles.modalText}><strong>Multa:</strong> {formData.multa}%</p>}

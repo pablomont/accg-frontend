@@ -1,5 +1,3 @@
-// import { useState } from 'react'; 
-// import { ChevronLeft, ChevronRight } from 'lucide-react'; 
 import { NavLink } from 'react-router-dom';
 import {
     LayoutDashboard,
@@ -18,17 +16,8 @@ const menuItems = [
 ];
 
 export function Sidebar() {
-    // const [isCollapsed, setIsCollapsed] = useState(false);
     return (
-        <aside className={`${styles.sidebar}`}>
-            
-            {/* <button 
-                className={styles.toggleBtn} 
-                onClick={() => setIsCollapsed(!isCollapsed)}
-            >
-                {isCollapsed ? <ChevronRight size={14}/> : <ChevronLeft size={14}/>}
-            </button> */}
-
+        <aside className={styles.sidebar}>
             <div className={styles.titleSection}>
                 <img src={logoImage} alt="Logo ACCG" className={styles.logoImage} />
             </div>
@@ -57,3 +46,5 @@ export function Sidebar() {
         </aside>
     );
 }
+
+export default Sidebar;
