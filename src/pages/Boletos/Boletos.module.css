@@ -53,3 +53,143 @@
     color: var(--color-gray-400);
     margin: 0;
 }
+
+/* sugestões para o US08 - Histórico de Cobranças */
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-6);
+    align-items: start;
+}
+
+.card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-gray-200);
+    padding: var(--spacing-6);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+.cardTitle {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+}
+
+.search {
+    height: 38px;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-md);
+    padding: 0 var(--spacing-4);
+    outline: none;
+    background: var(--color-white);
+    min-width: 220px;
+}
+
+.filterButton {
+    height: 38px;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-md);
+    background: var(--color-white);
+    padding: 0 var(--spacing-4);
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+}
+
+.tableWrap {
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    text-align: left;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-4) var(--spacing-3);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.table tbody td {
+    padding: var(--spacing-4) var(--spacing-3);
+    border-bottom: 1px solid var(--color-gray-100);
+    vertical-align: middle;
+    color: var(--color-gray-900);
+}
+
+.muted {
+    color: var(--color-gray-600);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+/* cores - ajuste se seu design system tiver tokens prontos */
+.badgeSuccess {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badgeWarning {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.badgeDanger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.iconButton {
+    height: 34px;
+    width: 34px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-gray-200);
+    background: var(--color-white);
+    cursor: pointer;
+}
+
+.empty {
+    text-align: center;
+    color: var(--color-gray-600);
+    padding: var(--spacing-6);
+}
+
+/* Responsivo (opcional, mas ajuda) */
+@media (max-width: 960px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search {
+        min-width: 160px;
+    }
+}
