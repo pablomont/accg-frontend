@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
+>>>>>>> origin/feature/US07-componente-gerador-de-boleto
 import styles from './Boletos.module.css';
 import { accountsMock } from '@/data/accounts.mock';
 import BoletoGenerator from '@/components/business/billing/BoletoGenerator';
@@ -34,6 +38,7 @@ export function Boletos() {
                 </p>
             </div>
 
+<<<<<<< HEAD
             <div className={styles.grid}>
                 {/* ===== HISTÓRICO ===== */}
                 <section className={styles.card}>
@@ -135,6 +140,9 @@ export function Boletos() {
                     <BoletoGenerator />
                 </aside>
             </div>
+=======
+            <BoletoGenerator/>
+>>>>>>> origin/feature/US07-componente-gerador-de-boleto
         </div>
     );
 }
