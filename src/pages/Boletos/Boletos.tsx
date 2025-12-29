@@ -6,6 +6,27 @@ import { PageTitle } from '../../components/ui/PageTitle';
 import { formatCurrency, formatDate } from '@/utils/formatters';
 import { Badge } from '../../components/ui/Badge';
 
+function isVencidoPorData(dataVencimento: string, status: string) {
+    if (status === 'pago') return false;
+
+    const hoje = new Date();
+    const vencimento = new Date(dataVencimento);
+
+    // compara apenas a data (sem hora)
+    const hojeSemHora = new Date(
+        hoje.getFullYear(),
+        hoje.getMonth(),
+        hoje.getDate()
+    );
+
+    const vencimentoSemHora = new Date(
+        vencimento.getFullYear(),
+        vencimento.getMonth(),
+        vencimento.getDate()
+    );
+
+    return vencimentoSemHora < hojeSemHora;
+}
 
 
 export function Boletos() {
@@ -54,16 +75,12 @@ export function Boletos() {
                                     <td>{formatDate(boleto.dataVencimento)}</td>
 
                                     <td>
-                                        {boleto.status === 'pago' && (
-                                            <Badge variant="success">Pago</Badge>
-                                        )}
-
-                                        {boleto.status === 'pendente' && (
-                                            <Badge variant="warning">Pendente</Badge>
-                                        )}
-
-                                        {boleto.status === 'vencido' && (
+                                        {isVencidoPorData(boleto.dataVencimento, boleto.status) ? (
                                             <Badge variant="danger">Vencido</Badge>
+                                        ) : boleto.status === 'pago' ? (
+                                            <Badge variant="success">Pago</Badge>
+                                        ) : (
+                                            <Badge variant="warning">Pendente</Badge>
                                         )}
                                     </td>
 
