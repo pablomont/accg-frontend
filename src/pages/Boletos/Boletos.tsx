@@ -10,10 +10,25 @@ export function Boletos() {
         <div className={styles.page}>
 
             <PageTitle>Boletos e Cobranças</PageTitle>
+
             <div className={styles.header}>
                 <h1 className={styles.title}>Boletos e PIX</h1>
                 <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
             </div>
+
+            {/* Layout em 2 paginas */}
+            <div className={styles.grid}>
+
+                {/* Coluna esquerda: histórico (placeholder por enquanto) */}
+                <section className={styles.card}>
+                    <h2>Histórico de Cobranças</h2>
+                    <p>O histórico será exibido aqui.</p>
+                </section>
+
+                {/* Coluna direita: gerador de boleto */}
+                <aside className={styles.card}>
+                    <BoletoGenerator />
+                </aside>
 
             {/*<div className={styles.placeholder}>
                 <FileText className={styles.placeholderIcon} size={80} />
@@ -25,8 +40,7 @@ export function Boletos() {
                     Consulte o arquivo README.md para ver as tarefas da Fase C
                 </p>
             </div>*/}
-            
-            <BoletoGenerator />
+            </div>
         </div>
     );
 }
