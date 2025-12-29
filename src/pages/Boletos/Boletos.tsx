@@ -4,6 +4,8 @@ import { accountsMock } from '../../data/accounts.mock';
 import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
 import { PageTitle } from '../../components/ui/PageTitle';
 import { formatCurrency, formatDate } from '@/utils/formatters';
+import { Badge } from '../../components/ui/Badge';
+
 
 
 export function Boletos() {
@@ -51,7 +53,19 @@ export function Boletos() {
 
                                     <td>{formatDate(boleto.dataVencimento)}</td>
 
-                                    <td>{boleto.status}</td>
+                                    <td>
+                                        {boleto.status === 'pago' && (
+                                            <Badge variant="success">Pago</Badge>
+                                        )}
+
+                                        {boleto.status === 'pendente' && (
+                                            <Badge variant="warning">Pendente</Badge>
+                                        )}
+
+                                        {boleto.status === 'vencido' && (
+                                            <Badge variant="danger">Vencido</Badge>
+                                        )}
+                                    </td>
 
                                     <td>⬇</td>
                                 </tr>
