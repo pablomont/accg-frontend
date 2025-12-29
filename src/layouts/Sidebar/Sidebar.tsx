@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react'; 
 import { NavLink } from 'react-router-dom';
 import {
     LayoutDashboard,
@@ -15,9 +16,22 @@ const menuItems = [
     { path: '/boletos', label: 'Boletos/PIX', icon: FileText },
 ];
 
-export function Sidebar() {
+type SidebarProps = {
+    isCollapsed?: boolean;
+    onToggle?: () => void;
+};
+
+export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
     return (
-        <aside className={styles.sidebar}>
+        <aside className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>
+            
+            <button 
+                className={styles.toggleBtn} 
+                onClick={() => onToggle && onToggle()}
+            >
+                {isCollapsed ? <ChevronRight size={14}/> : <ChevronLeft size={14}/>}
+            </button>
+
             <div className={styles.titleSection}>
                 <img src={logoImage} alt="Logo ACCG" className={styles.logoImage} />
             </div>
