@@ -150,16 +150,19 @@ export const apiBoletos = axios.create({
 
 Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados remotos.
 
-**2. Endpoints para consumir (Substituir Mocks):**
+**. Endpoints para consumir (Substituir Mocks):**
 
-| Recurso | Método | Endpoint Hipotético | Payload (Body) |
-|---|---|---|---|
-| **Associados** | GET | `/associados` | - |
-| **Criar Associado** | POST | `/associados` | `{ nome, cpf, email }` |
-| **Despesas** | GET | `/despesas` | - |
-| **Criar Despesa** | POST | `/despesas` | `{ descricao, valor, categoria }` |
-| **Boletos** | GET | `/boletos` | - |
-| **Gerar Boleto** | POST | `/boletos` | `{ associadoId, valor }` |
+
+| Recurso | Método | Instância | Endpoint | Payload (Exemplo) | Descrição |
+|---|---|---|---|---|---|
+| **Associados** | `GET` | `api` | `/associados` | - | Lista todos os associados |
+| | `POST` | `api` | `/associados` | `{ "nome": "...", "cpfCnpj": "..." }` | Cria novo associado |
+| | `PUT` | `api` | `/associados/:id` | `{ "nome": "..." }` | Atualiza associado |
+| | `DELETE` | `api` | `/associados/:id` | - | Remove associado |
+| **Despesas** | `GET` | `api` | `/despesas` | - | Lista contas a pagar |
+| | `POST` | `api` | `/despesas` | `{ "descricao": "...", "valor": 100 }` | Cria despesa |
+| **Boletos** | `GET` | `apiBoletos` | `/boletos` | - | Lista boletos |
+| | `POST` | `apiBoletos` | `/boletos` | `{ "associadoId": "...", "valor": 150 }` | Gera novo boleto |
 
 
 ### 🧹 Governança & Padronização (Tarefa de Exemplo)
