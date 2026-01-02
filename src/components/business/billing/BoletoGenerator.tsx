@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './BoletoGenerator.module.css';
-import { Card, Button, Input, Modal } from '@/components/ui';
+import { Card, Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
@@ -36,11 +36,17 @@ export function BoletoGenerator() {
         if (errors[id as keyof BoletoFormData]) setErrors(prev => ({ ...prev, [id]: '' }));
     };
 
+    const isPastDate = (date: string) => {
+        if (!date) return false;
+        return date < getTodayDate();
+    };
+
     const handleGerarCobranca = () => {
         const newErrors: Partial<Record<keyof BoletoFormData, string>> = {};
         if (!formData.associadoId) newErrors.associadoId = 'Selecione um associado.';
         if (formData.valor <= 0) newErrors.valor = 'O valor deve ser maior que zero.';
         if (!formData.dataVencimento) newErrors.dataVencimento = 'Selecione uma data de vencimento.';
+        else if (isPastDate(formData.dataVencimento)) newErrors.dataVencimento = 'A data de vencimento não pode ser anterior à data atual.';
 
         setErrors(newErrors);
         if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
@@ -69,26 +75,38 @@ export function BoletoGenerator() {
                     <h2 className={styles.title}>Gerar Cobrança</h2>
                 </div>
 
-                <div className={styles.formGroup}>
-                    <label htmlFor="associadoId" className={styles.label}>Selecione um Associado</label>
-                    <select
-                        id="associadoId"
-                        value={formData.associadoId}
-                        onChange={handleChange}
-                        className={`${styles.select} ${errors.associadoId ? styles.selectError : ''}`}
-                        required
-                    >
-                        <option value="" disabled>-- Escolha um associado --</option>
-                        {membersMock.map(m => <option key={m.id} value={m.id}>{m.nome}</option>)}
-                    </select>
-                    {errors.associadoId && <span className={styles.errorMessage}>{errors.associadoId}</span>}
-                </div>
+                <Select
+                    id="associadoId"
+                    label="Selecione um Associado"
+                    value={formData.associadoId}
+                    onChange={handleChange}
+                    options={membersMock.map(m => ({ label: m.nome, value: m.id }))}
+                    placeholder="-- Escolha um associado --"
+                    error={errors.associadoId}
+                    required
+                />
 
-                <Input id="valor" label="Valor (R$)" type="number" step="0.01" min="0.01"
-                    value={formData.valor || ''} onChange={handleChange} error={errors.valor} />
+                <Input 
+                    id="valor" 
+                    label="Valor (R$)" 
+                    type="number" 
+                    step="0.10" 
+                    min="0.10"
+                    lang="pt-BR"
+                    value={formData.valor ? formData.valor.toFixed(2) : ''} 
+                    onChange={handleChange} 
+                    error={errors.valor} 
+                />
 
-                <Input id="dataVencimento" label="Vencimento" type="date" min={getTodayDate()}
-                    value={formData.dataVencimento} onChange={handleChange} error={errors.dataVencimento} />
+                <Input 
+                    id="dataVencimento" 
+                    label="Vencimento" 
+                    type="date" 
+                    min={getTodayDate()}
+                    value={formData.dataVencimento} 
+                    onChange={handleChange} 
+                    error={errors.dataVencimento} 
+                />
 
                 {/* Campos de Multa e Juros
                 <div className={styles.row}>

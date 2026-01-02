@@ -34,58 +34,6 @@
     margin: 0;
 }
 
-.formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-primary, #1a1a1a);
-    margin: 0;
-}
-
-.select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--color-border, #e0e0e0);
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-    background-color: var(--color-bg-primary, #ffffff);
-    color: var(--color-text-primary, #1a1a1a);
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-}
-
-.select:focus {
-    outline: none;
-    border-color: var(--color-primary, #007bff);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.select:hover {
-    border-color: var(--color-primary, #007bff);
-}
-
-.selectError {
-    border-color: var(--color-danger, #dc3545);
-}
-
-.selectError:focus {
-    border-color: var(--color-danger, #dc3545);
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-}
-
-.errorMessage {
-    font-size: 0.75rem;
-    color: var(--color-danger, #dc3545);
-    margin-top: 0.25rem;
-}
-
 .row {
     display: flex;
     gap: 1rem;
