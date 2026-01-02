@@ -129,17 +129,26 @@ Use o dashboard como base para criar as páginas de Associados e Financeiro!
 > 📘 **Guia Técnico:**
 > *   [US12: Configuração do Cliente Axios](https://github.com/pablomont/accg-frontend/issues/12)
 > *   [US13: Integração de Associados](https://github.com/pablomont/accg-frontend/issues/13)
-> *   [US14: Integração Financeira e Boletos](https://github.com/pablomont/accg-frontend/issues/14)
+> *   [US14: Integração de Despesas](https://github.com/pablomont/accg-frontend/issues/14)
+> *   [US15: Integração de Boletos](https://github.com/pablomont/accg-frontend/issues/31)
 
-Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados reais.
-
+Nesta fase, vocês usarão uma **API Remota**.
+O objetivo é substituir os mocks locais (`src/data/*.mock.ts`) por chamadas reais via **Axios**.
 **1. Configurar Axios (`src/services/api.ts`)**
+Como temos bases diferentes para tipos de dados diferentes (devido a limitações do MockAPI), vamos criar duas instâncias:
 ```typescript
 import axios from 'axios';
+// Instância para Associados e Despesas
 export const api = axios.create({
-    baseURL: 'http://api-accg.com.br/api' // URL Hipotética
+    baseURL: 'https://6957e32ef7ea690182d3626d.mockapi.io'
+});
+// Instância para Boletos
+export const apiBoletos = axios.create({
+    baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io'
 });
 ```
+
+Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados remotos.
 
 **2. Endpoints para consumir (Substituir Mocks):**
 
@@ -150,7 +159,7 @@ export const api = axios.create({
 | **Despesas** | GET | `/despesas` | - |
 | **Criar Despesa** | POST | `/despesas` | `{ descricao, valor, categoria }` |
 | **Boletos** | GET | `/boletos` | - |
-| **Gerar Boleto** | POST | `/boletos/gerar` | `{ associadoId, valor }` |
+| **Gerar Boleto** | POST | `/boletos` | `{ associadoId, valor }` |
 
 
 ### 🧹 Governança & Padronização (Tarefa de Exemplo)
