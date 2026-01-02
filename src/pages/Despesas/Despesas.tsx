@@ -1,5 +1,6 @@
 import { Receipt } from 'lucide-react';
 import styles from './Despesas.module.css';
+import { FinancialSummary } from '@/components/business/finance/FinancialSummary';
 
 export function Despesas() {
     return (
@@ -8,6 +9,8 @@ export function Despesas() {
                 <h1 className={styles.title}>Despesas</h1>
                 <p className={styles.subtitle}>Controle de despesas e plano de contas</p>
             </div>
+
+            <FinancialSummary />
 
             <div className={styles.placeholder}>
                 <Receipt className={styles.placeholderIcon} size={80} />

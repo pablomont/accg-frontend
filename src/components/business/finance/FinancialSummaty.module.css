@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.cardBase{
+    flex: 1;
+    overflow: hidden;
+    border: none !important;
+}
+
+.income {background-color: #f0fdf4 !important;}
+.expense {background-color: #fef2f2 !important;}
+.balance {background-color: #eff6ff !important;}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.textGroup {
+  display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.iconIncome {background-color: #dcfce7;}
+.iconExpense {background-color: #fee2e2;}
+.iconBalance {background-color: #dbeafe;}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
