@@ -28,22 +28,6 @@
     margin: 0 0 0.5rem 0;
 }
 
-.subtitle {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary, #666666);
-    margin: 0;
-}
-
-.row {
-    display: flex;
-    gap: 1rem;
-}
-
-.halfInput {
-    flex: 1;
-    min-width: 0
-}
-
 .footer {
     display: flex;
     gap: 1rem;
@@ -86,15 +70,4 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
-}
-
-.whatsappButton {
-    background-color: #25D366;
-    border-color: #25D366;
-    color: #fff;
-}
-
-.whatsappButton:hover {
-    background-color: #128C7E;
-    border-color: #128C7E;
 }

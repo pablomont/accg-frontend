@@ -10,8 +10,6 @@ const INITIAL_STATE: BoletoFormData = {
     valor: 0,
     dataVencimento: '',
     descricao: ''
-    // multa: 0,
-    // juros: 0
 };
 
 export function BoletoGenerator() {
@@ -31,7 +29,6 @@ export function BoletoGenerator() {
         setFormData(prev => ({
             ...prev,
             [id]: ['valor'].includes(id) ? (parseFloat(value) || 0) : value
-            // [id]: ['valor', 'multa', 'juros'].includes(id) ? (parseFloat(value) || 0) : value
         }));
         if (errors[id as keyof BoletoFormData]) setErrors(prev => ({ ...prev, [id]: '' }));
     };
@@ -56,17 +53,6 @@ export function BoletoGenerator() {
         setShowSuccessModal(false);
         setFormData(INITIAL_STATE);
     };
-
-    /* COMENTADO: Função WhatsApp
-    const handleWhatsApp = () => {
-        const dataFormatada = new Date(formData.dataVencimento).toLocaleDateString('pt-BR');
-        let message = `Olá ${associadoSelecionado?.nome}, seu boleto de R$ ${formData.valor.toFixed(2)} foi gerado com sucesso!\n Com vencimento em ${dataFormatada}, logo, prepare-se para efetuar o pagamento.`;
-        // if ((formData.multa ?? 0) > 0) message += `\nMulta: ${formData.multa}%`;
-        // if ((formData.juros ?? 0) > 0) message += `\nJuros: ${formData.juros}%`;
-        if (formData.descricao) message += `\nDescrição: ${formData.descricao}`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-    };
-    */
 
     return (
         <div className={styles.container}>
@@ -108,15 +94,6 @@ export function BoletoGenerator() {
                     error={errors.dataVencimento} 
                 />
 
-                {/* Campos de Multa e Juros
-                <div className={styles.row}>
-                    <Input id="multa" label="Multa (%)" type="number" step="0.1" className={styles.halfInput}
-                        value={formData.multa || ''} onChange={handleChange} />
-                    <Input id="juros" label="Juros (%)" type="number" step="0.1" className={styles.halfInput}
-                        value={formData.juros || ''} onChange={handleChange} />
-                </div>
-                */}
-
                 <Input id="descricao" label="Descrição (Opcional)" type="text" placeholder="A descrição informada será impressa na fatura"
                     value={formData.descricao} onChange={handleChange} />
 
@@ -130,15 +107,8 @@ export function BoletoGenerator() {
                     <p className={styles.modalText}>
                         Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
                     </p>
-                    {/* Exibição de Multa e Juros
-                    {(formData.multa ?? 0) > 0 && <p className={styles.modalText}><strong>Multa:</strong> {formData.multa}%</p>}
-                    {(formData.juros ?? 0) > 0 && <p className={styles.modalText}><strong>Juros:</strong> {formData.juros}%</p>}
-                    */}
                     {formData.descricao && <p className={styles.modalText}><strong>Descrição:</strong> {formData.descricao}</p>}
                     <div className={styles.modalActions}>
-                        {/* COMENTADO: Botão WhatsApp
-                        <Button onClick={handleWhatsApp} className={styles.whatsappButton}>Enviar no WhatsApp</Button>
-                        */}
                         <Button onClick={handleCloseModal} variant="secondary">Fechar</Button>
                     </div>
                 </div>
