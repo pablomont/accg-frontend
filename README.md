@@ -147,8 +147,7 @@ export const apiBoletos = axios.create({
     baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io'
 });
 ```
-
-Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados remotos.
+Ao fim dessa fase, deve-se remover os arquivos de `src/data`.
 
 **. Endpoints para consumir (Substituir Mocks):**
 
