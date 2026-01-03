@@ -12,7 +12,7 @@ export const MemberCard = ({ member }: MemberCardProps) => {
     const isPessoaFisica = member.tipoPessoa === 'fisica';
     const Icon = isPessoaFisica ? User : Building2;
 
-    const badgeVariantColor = member.status == 'ativo' ? 'success' : 'warning';
+    const badgeVariantColor = member.status === 'ativo' ? 'success' : 'warning';
 
     return(
         <Card className={styles.container}>
