@@ -1,7 +1,16 @@
-import { Receipt } from 'lucide-react';
 import styles from './Despesas.module.css';
+import { FinancialSummary, Transaction } from '@/components/business/finance/FinancialSummary';
 
 export function Despesas() {
+
+    const mockTransactions: Transaction[] = [
+                {amount: 5000, type: 'income'},
+                {amount: 1200, type: 'expense'},
+                {amount: 800, type: 'expense'},
+                {amount: 2500, type: 'income'},
+                {amount: 1500, type: 'income'}
+            ]
+
     return (
         <div className={styles.page}>
             <div className={styles.header}>
@@ -9,16 +18,7 @@ export function Despesas() {
                 <p className={styles.subtitle}>Controle de despesas e plano de contas</p>
             </div>
 
-            <div className={styles.placeholder}>
-                <Receipt className={styles.placeholderIcon} size={80} />
-                <h2 className={styles.placeholderTitle}>Módulo em Desenvolvimento</h2>
-                <p className={styles.placeholderText}>
-                    Este módulo será desenvolvido pelos alunos.
-                </p>
-                <p className={styles.placeholderHint}>
-                    Consulte o arquivo README.md para ver as tarefas da Fase B
-                </p>
-            </div>
+            <FinancialSummary transactions={mockTransactions} />
         </div>
     );
 }
