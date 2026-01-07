@@ -1,7 +1,7 @@
 import styles from "./Despesas.module.css";
 import { Badge, PageTitle, Table } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
-import { formatDate } from "@/utils";
+import { formatDate, formatCurrency } from "@/utils";
 
 export function Despesas() {
   const getCategoriaNome = (categoriaId: string) => {
@@ -35,7 +35,7 @@ export function Despesas() {
               <td>{formatDate(despesa.data)}</td>
               <td>{despesa.descricao}</td>
               <td>{getCategoriaNome(despesa.categoriaId)}</td>
-              <td>R$ {despesa.valor.toFixed(2)}</td>
+              <td>{formatCurrency(despesa.valor)}</td>
               <td>
                 {despesa.status === "pago" ? (
                   <Badge variant="success">Pago</Badge>
