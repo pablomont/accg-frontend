@@ -20,11 +20,13 @@ export function Despesas() {
 
       <Table>
         <thead>
-          <th>Data</th>
-          <th>Descrição</th>
-          <th>Categoria</th>
-          <th>Valor</th>
-          <th>Status</th>
+          <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody>
           {financeMock.map((despesa) => (
