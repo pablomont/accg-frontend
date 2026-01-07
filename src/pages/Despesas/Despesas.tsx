@@ -1,9 +1,6 @@
-import { Receipt } from "lucide-react";
 import styles from "./Despesas.module.css";
-import { Badge } from "@/components/ui";
-import { PageTitle } from "@/components/ui";
+import { Badge, PageTitle, Table } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
-import { Table } from "@/components/ui";
 
 export function Despesas() {
   const getCategoriaNome = (categoriaId: string) => {
