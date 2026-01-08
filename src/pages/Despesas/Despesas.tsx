@@ -43,8 +43,8 @@ export function Despesas() {
           </div>
 
           <div className={styles.controls}>
-            <label>Valor</label>
             <Input
+            label="Valor"
             placeholder="R$ 0,00"
             value={valor}
             onChange={(e)=> setValor(e.target.value)}
