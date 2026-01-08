@@ -34,8 +34,8 @@ export function Despesas() {
           title="Nova Despesa"
         >
           <div className={styles.controls}>
-            <label>Descrição</label>
             <Input
+              label="Descrição"
               placeholder="Ex: Conta de Luz"
               value={descricao}
               onChange={(e)=> setDescricao(e.target.value)}
