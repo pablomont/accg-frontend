@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export function Despesas() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [descricao, setIsDescricao] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
 
@@ -38,7 +38,7 @@ export function Despesas() {
             <Input
               placeholder="Ex: Conta de Luz"
               value={descricao}
-              onChange={(e)=> setIsDescricao(e.target.value)}
+              onChange={(e)=> setDescricao(e.target.value)}
             />
           </div>
 
