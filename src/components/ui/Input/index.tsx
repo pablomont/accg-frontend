@@ -15,7 +15,7 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
                 </label>
             )}
             <input
-                className={styles.input}
+                className={`${styles.input} ${error ? styles.inputError : ''}`}
                 {...props}
             />
             {error && <span className={styles.error}>{error}</span>}
