@@ -1,13 +1,22 @@
-import styles from "./Despesas.module.css";
 import { Badge, PageTitle, Table } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
 import { formatDate, formatCurrency } from "@/utils";
+import styles from './Despesas.module.css';
+import { FinancialSummary, Transaction } from '@/components/business/finance/FinancialSummary';
 
 export function Despesas() {
   const getCategoriaNome = (categoriaId: string) => {
     const categoria = categoriesMock.find((c) => c.id === categoriaId);
     return categoria ? categoria.nome : "—";
   };
+
+  const mockTransactions: Transaction[] = [
+                {amount: 5000, type: 'income'},
+                {amount: 1200, type: 'expense'},
+                {amount: 800, type: 'expense'},
+                {amount: 2500, type: 'income'},
+                {amount: 1500, type: 'income'}
+            ]
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -16,6 +25,8 @@ export function Despesas() {
           Controle de despesas e plano de contas
         </p>
       </div>
+
+      <FinancialSummary transactions={mockTransactions} />
 
       <PageTitle>Livro Caixa</PageTitle>
 
