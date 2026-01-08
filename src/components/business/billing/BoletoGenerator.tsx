@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './BoletoGenerator.module.css';
-import { Card, Button, Input, Modal } from '@/components/ui';
+import { Card, Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
@@ -10,8 +10,6 @@ const INITIAL_STATE: BoletoFormData = {
     valor: 0,
     dataVencimento: '',
     descricao: ''
-    // multa: 0,
-    // juros: 0
 };
 
 export function BoletoGenerator() {
@@ -31,9 +29,13 @@ export function BoletoGenerator() {
         setFormData(prev => ({
             ...prev,
             [id]: ['valor'].includes(id) ? (parseFloat(value) || 0) : value
-            // [id]: ['valor', 'multa', 'juros'].includes(id) ? (parseFloat(value) || 0) : value
         }));
         if (errors[id as keyof BoletoFormData]) setErrors(prev => ({ ...prev, [id]: '' }));
+    };
+
+    const isPastDate = (date: string) => {
+        if (!date) return false;
+        return date < getTodayDate();
     };
 
     const handleGerarCobranca = () => {
@@ -41,6 +43,7 @@ export function BoletoGenerator() {
         if (!formData.associadoId) newErrors.associadoId = 'Selecione um associado.';
         if (formData.valor <= 0) newErrors.valor = 'O valor deve ser maior que zero.';
         if (!formData.dataVencimento) newErrors.dataVencimento = 'Selecione uma data de vencimento.';
+        else if (isPastDate(formData.dataVencimento)) newErrors.dataVencimento = 'A data de vencimento não pode ser anterior à data atual.';
 
         setErrors(newErrors);
         if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
@@ -51,17 +54,6 @@ export function BoletoGenerator() {
         setFormData(INITIAL_STATE);
     };
 
-    /* COMENTADO: Função WhatsApp
-    const handleWhatsApp = () => {
-        const dataFormatada = new Date(formData.dataVencimento).toLocaleDateString('pt-BR');
-        let message = `Olá ${associadoSelecionado?.nome}, seu boleto de R$ ${formData.valor.toFixed(2)} foi gerado com sucesso!\n Com vencimento em ${dataFormatada}, logo, prepare-se para efetuar o pagamento.`;
-        // if ((formData.multa ?? 0) > 0) message += `\nMulta: ${formData.multa}%`;
-        // if ((formData.juros ?? 0) > 0) message += `\nJuros: ${formData.juros}%`;
-        if (formData.descricao) message += `\nDescrição: ${formData.descricao}`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-    };
-    */
-
     return (
         <div className={styles.container}>
             <Card className={styles.card}>
@@ -69,35 +61,38 @@ export function BoletoGenerator() {
                     <h2 className={styles.title}>Gerar Cobrança</h2>
                 </div>
 
-                <div className={styles.formGroup}>
-                    <label htmlFor="associadoId" className={styles.label}>Selecione um Associado</label>
-                    <select
-                        id="associadoId"
-                        value={formData.associadoId}
-                        onChange={handleChange}
-                        className={`${styles.select} ${errors.associadoId ? styles.selectError : ''}`}
-                        required
-                    >
-                        <option value="" disabled>-- Escolha um associado --</option>
-                        {membersMock.map(m => <option key={m.id} value={m.id}>{m.nome}</option>)}
-                    </select>
-                    {errors.associadoId && <span className={styles.errorMessage}>{errors.associadoId}</span>}
-                </div>
+                <Select
+                    id="associadoId"
+                    label="Selecione um Associado"
+                    value={formData.associadoId}
+                    onChange={handleChange}
+                    options={membersMock.map(m => ({ label: m.nome, value: m.id }))}
+                    placeholder="-- Escolha um associado --"
+                    error={errors.associadoId}
+                    required
+                />
 
-                <Input id="valor" label="Valor (R$)" type="number" step="0.01" min="0.01"
-                    value={formData.valor || ''} onChange={handleChange} error={errors.valor} />
+                <Input 
+                    id="valor" 
+                    label="Valor (R$)" 
+                    type="number" 
+                    step="0.10" 
+                    min="0.10"
+                    lang="pt-BR"
+                    value={formData.valor ? formData.valor.toFixed(2) : ''} 
+                    onChange={handleChange} 
+                    error={errors.valor} 
+                />
 
-                <Input id="dataVencimento" label="Vencimento" type="date" min={getTodayDate()}
-                    value={formData.dataVencimento} onChange={handleChange} error={errors.dataVencimento} />
-
-                {/* Campos de Multa e Juros
-                <div className={styles.row}>
-                    <Input id="multa" label="Multa (%)" type="number" step="0.1" className={styles.halfInput}
-                        value={formData.multa || ''} onChange={handleChange} />
-                    <Input id="juros" label="Juros (%)" type="number" step="0.1" className={styles.halfInput}
-                        value={formData.juros || ''} onChange={handleChange} />
-                </div>
-                */}
+                <Input 
+                    id="dataVencimento" 
+                    label="Vencimento" 
+                    type="date" 
+                    min={getTodayDate()}
+                    value={formData.dataVencimento} 
+                    onChange={handleChange} 
+                    error={errors.dataVencimento} 
+                />
 
                 <Input id="descricao" label="Descrição (Opcional)" type="text" placeholder="A descrição informada será impressa na fatura"
                     value={formData.descricao} onChange={handleChange} />
@@ -112,15 +107,8 @@ export function BoletoGenerator() {
                     <p className={styles.modalText}>
                         Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
                     </p>
-                    {/* Exibição de Multa e Juros
-                    {(formData.multa ?? 0) > 0 && <p className={styles.modalText}><strong>Multa:</strong> {formData.multa}%</p>}
-                    {(formData.juros ?? 0) > 0 && <p className={styles.modalText}><strong>Juros:</strong> {formData.juros}%</p>}
-                    */}
                     {formData.descricao && <p className={styles.modalText}><strong>Descrição:</strong> {formData.descricao}</p>}
                     <div className={styles.modalActions}>
-                        {/* COMENTADO: Botão WhatsApp
-                        <Button onClick={handleWhatsApp} className={styles.whatsappButton}>Enviar no WhatsApp</Button>
-                        */}
                         <Button onClick={handleCloseModal} variant="secondary">Fechar</Button>
                     </div>
                 </div>

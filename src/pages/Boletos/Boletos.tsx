@@ -39,7 +39,7 @@ export function Boletos() {
                 <h1 className={styles.title}>Boletos e PIX</h1>
                 <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
             </div>
-
+            
             {/* Layout em 2 paginas */}
             <div className={styles.grid}>
 

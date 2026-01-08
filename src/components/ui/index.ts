@@ -1,5 +1,6 @@
 export { Button } from './Button';
 export { Input } from './Input';
+export { Select } from './Select';
 export { Card } from './Card';
 export { PageTitle } from './PageTitle';
 export { Table } from './Table';
