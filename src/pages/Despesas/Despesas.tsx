@@ -1,5 +1,5 @@
 import styles from "./Despesas.module.css";
-import { Badge, PageTitle, Table, Button, Input, Modal } from "@/components/ui";
+import { Badge, Select, PageTitle, Table, Button, Input, Modal } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
 import { formatDate, formatCurrency } from "@/utils";
 import { useState } from "react";
@@ -52,15 +52,15 @@ export function Despesas() {
           </div>
 
           <div className={styles.controls}>
-            <label>Categoria</label>
-            <select
+            <Select
+              label="categroia"
               value={categoria}
               onChange={(e)=> setCategoria(e.target.value)}
-              className={styles.select}
-              >
-                  <option value="fixa">Fixa</option>
-                  <option value="variavel">Variavel</option>
-          </select>
+              options={[
+                  {label: 'Fixa', value:'fixa'},
+                  {label: 'Variável', value:'variavel'}
+              ]}
+              />
           </div>
 
           <div
