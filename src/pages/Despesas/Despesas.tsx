@@ -1,7 +1,7 @@
 import styles from "./Despesas.module.css";
 import { Badge, Select, PageTitle, Table, Button, Input, Modal } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
-import { formatDate, formatCurrency } from "@/utils";
+import { formatDate, formatCurrency, maskCurrency } from "@/utils";
 import { useState } from "react";
 
 
@@ -47,7 +47,7 @@ export function Despesas() {
             label="Valor"
             placeholder="R$ 0,00"
             value={valor}
-            onChange={(e)=> setValor(e.target.value)}
+            onChange={(e)=> setValor(maskCurrency(e.target.value))}
             />
           </div>
 
