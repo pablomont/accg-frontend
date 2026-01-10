@@ -76,8 +76,6 @@ export function BoletoGenerator() {
                     id="valor" 
                     label="Valor (R$)" 
                     type="text" 
-                    step="0.10" 
-                    min="0.10"
                     lang="pt-BR"
                     value={formData.valor ? formData.valor.toFixed(2) : ''} 
                     onChange={handleChange} 
