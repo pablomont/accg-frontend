@@ -53,7 +53,7 @@ export function Despesas() {
 
           <div className={styles.controls}>
             <Select
-              label="categroia"
+              label="categoria"
               value={categoria}
               onChange={(e)=> setCategoria(e.target.value)}
               options={[
