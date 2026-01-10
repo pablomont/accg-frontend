@@ -5,6 +5,8 @@ import { BoletoGenerator } from '../../components/business/billing/BoletoGenerat
 import { PageTitle } from '../../components/ui/PageTitle';
 import { formatCurrency, formatDate } from '@/utils/formatters';
 import { Badge } from '../../components/ui/Badge';
+import { Table } from '@/components/ui';
+
 
 function isVencidoPorData(dataVencimento: string, status: string) {
     if (status === 'pago') return false;
@@ -46,7 +48,7 @@ export function Boletos() {
                 {/* Coluna esquerda: histórico */}
                 <section className={styles.card}>
                     <h2>Histórico de Cobranças</h2>
-                    <table className={styles.table}>
+                    <Table>
                         <thead>
                             <tr>
                                 <th>Data</th>
@@ -88,7 +90,7 @@ export function Boletos() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </Table>
                 </section>
 
                 {/* Coluna direita: gerador de boleto */}
