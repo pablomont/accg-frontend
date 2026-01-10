@@ -37,30 +37,6 @@
     box-shadow: var(--shadow-sm);
 }
 
-/* Tabela de Histórico */
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: var(--spacing-4);
-}
-
-.table th {
-    text-align: left;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-gray-600);
-    padding: var(--spacing-3);
-    border-bottom: 1px solid var(--color-gray-200);
-}
-
-.table td {
-    padding: var(--spacing-3);
-    font-size: var(--font-size-sm);
-    color: var(--color-gray-800);
-    border-bottom: 1px solid var(--color-gray-200);
-}
-
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
