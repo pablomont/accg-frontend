@@ -14,6 +14,25 @@ export function Dashboard() {
         return { totalAssociados: total, associadosAtivos: ativos };
     }, [membersMock]);
 
+    const summaryCardsDynamic = [
+        {
+            id: 1,
+            title: 'Total de Associados',
+            value: totalAssociados.toString(),
+            icon: Users,
+            color: 'primary',
+        },
+
+        {
+            id: 2,
+            title: 'Associados Ativos',
+            value: associadosAtivos.toString(),
+            icon: UserCheck,
+            color: 'success',
+        },
+
+    ]
+
     return (
         <div className={styles.dashboard}>
             {/* 2. Cabeçalho da Página com Título e Ações */}
