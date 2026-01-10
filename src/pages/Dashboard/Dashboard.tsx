@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
-import { summaryCards } from '@/data/dashboard.mock';
+import { Users, UserCheck, Receipt, FileText } from 'lucide-react';
+import { membersMock } from '@/data/members.mock';
 
 export function Dashboard() {
     // 1. Controle de Estado do Modal (Exemplo de useState)
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const { totalAssociados, associadosAtivos } = useMemo (() => {
+        const total = membersMock.length;
+        const ativos = membersMock.filter(m => m.status === 'ativo').length;
+        return { totalAssociados: total, associadosAtivos: ativos };
+    }, [membersMock]);
 
     return (
         <div className={styles.dashboard}>
