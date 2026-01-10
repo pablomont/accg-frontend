@@ -21,6 +21,28 @@
     margin: 0;
 }
 
+/* Layout US08 */
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-6);
+    align-items: flex-start;
+}
+
+.card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .placeholder {
     background-color: var(--color-white);
     border-radius: var(--border-radius-lg);
