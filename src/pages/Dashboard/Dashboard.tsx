@@ -31,7 +31,22 @@ export function Dashboard() {
             color: 'success',
         },
 
-    ]
+        {
+            id: 3,
+            title: 'Despesas do Mês',
+            value: 'R$ 12.450,00',
+            icon: Receipt,
+            color: 'warning',
+        },
+
+        {
+            id: 4,
+            title: 'Boletos Pendentes',
+            value: '23',
+            icon: FileText,
+            color: 'danger',
+        },
+    ];
 
     return (
         <div className={styles.dashboard}>
