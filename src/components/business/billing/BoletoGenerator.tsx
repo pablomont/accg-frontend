@@ -3,7 +3,7 @@ import styles from './BoletoGenerator.module.css';
 import { Card, Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
-import { formatCurrency } from '@/utils/formatters';
+import { formatCurrency, maskCurrency, unmask } from '@/utils';
 
 const INITIAL_STATE: BoletoFormData = {
     associadoId: '',
