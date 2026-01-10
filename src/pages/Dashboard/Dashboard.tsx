@@ -2,14 +2,17 @@ import React from 'react';
 import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
 import { summaryCards } from '@/data/dashboard.mock';
+import { accountsMock } from '@/data/accounts.mock';
 
 export function Dashboard() {
-    // 1. Controle de Estado do Modal (Exemplo de useState)
     const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+    const pendingBillsCount = accountsMock.filter(
+        (account) => account.status !== 'pago'
+    ).length;
 
     return (
         <div className={styles.dashboard}>
-            {/* 2. Cabeçalho da Página com Título e Ações */}
             <div className={styles.header}>
                 <div>
                     <PageTitle>Dashboard Financeiro</PageTitle>
@@ -19,25 +22,30 @@ export function Dashboard() {
                 </div>
             </div>
 
-            {/* 4. Grid de Cards Principais (KPIs) */}
             <div className={styles.cardsGrid}>
-                {summaryCards.map((card) => (
-                    <Card
-                        key={card.id}
-                        className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
-                    >
-                        <div className={styles.cardIcon}>
-                            <card.icon size={28} />
-                        </div>
-                        <div className={styles.cardContent}>
-                            <span className={styles.cardValue}>{card.value}</span>
-                            <span className={styles.cardTitle}>{card.title}</span>
-                        </div>
-                    </Card>
-                ))}
+                {summaryCards.map((card) => {
+                    const cardValue =
+                        card.color === 'danger'
+                            ? pendingBillsCount
+                            : card.value;
+
+                    return (
+                        <Card
+                            key={card.id}
+                            className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
+                        >
+                            <div className={styles.cardIcon}>
+                                <card.icon size={28} />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.cardValue}>{cardValue}</span>
+                                <span className={styles.cardTitle}>{card.title}</span>
+                            </div>
+                        </Card>
+                    );
+                })}
             </div>
 
-            {/* 5. Seção de Listagem (Tabela) */}
             <section>
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>Transações Recentes</h2>
@@ -46,7 +54,9 @@ export function Dashboard() {
                             placeholder="Buscar transação..."
                             className={styles.inputSearch}
                         />
-                        <Button onClick={() => setIsModalOpen(true)}>Nova Despesa</Button>
+                        <Button onClick={() => setIsModalOpen(true)}>
+                            Nova Despesa
+                        </Button>
                     </div>
                 </div>
 
@@ -88,7 +98,6 @@ export function Dashboard() {
                 </Card>
             </section>
 
-            {/* 6. Componente Modal (Visível apenas se isOpen={true}) */}
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -98,8 +107,12 @@ export function Dashboard() {
                     Este é um exemplo de como o Modal deve funcionar.
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-                    <Button variant="secondary" onClick={() => setIsModalOpen(false)}>Cancelar</Button>
-                    <Button onClick={() => alert('Salvar (simulado)')}>Salvar</Button>
+                    <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
+                        Cancelar
+                    </Button>
+                    <Button onClick={() => alert('Salvar (simulado)')}>
+                        Salvar
+                    </Button>
                 </div>
             </Modal>
         </div>
