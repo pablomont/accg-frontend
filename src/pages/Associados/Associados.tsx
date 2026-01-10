@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { MemberCard } from '@/components/business/members/MemberCard';
 
 export default function Associados() {
-    const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid'); //para alternar entre a visualização de tabela ou grade
+    const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
 
     const handleNovoAssociado = () => {
-        console.log("Botao clicado") //implementar US03 aq
+        console.log("Botao clicado") //implementar US03 aqui
     };
 
     return (
@@ -66,10 +66,3 @@ export default function Associados() {
         </div>
     );
 }
-
-// //temporario ate ser implementado o US01 
-// const MemberCard = ({ member }: any) => (
-//     <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-//         {member.nome}
-//     </div>
-// );
