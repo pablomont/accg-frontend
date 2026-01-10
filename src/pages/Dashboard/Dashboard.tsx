@@ -62,7 +62,7 @@ export function Dashboard() {
 
             {/* 4. Grid de Cards Principais (KPIs) */}
             <div className={styles.cardsGrid}>
-                {summaryCards.map((card) => (
+                {summaryCardsDynamic.map((card) => (
                     <Card
                         key={card.id}
                         className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
