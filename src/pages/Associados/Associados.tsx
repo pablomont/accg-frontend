@@ -3,6 +3,7 @@ import { membersMock } from '@/data/members.mock'
 import styles from './Associados.module.css';
 import { useState } from 'react';
 import { MemberCard } from '@/components/business/members/MemberCard';
+import { Badge } from '@/components/ui';
 
 export function Associados() {
     const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
@@ -53,9 +54,9 @@ export function Associados() {
                                     <td>{member.cpfCnpj}</td>
                                     <td>{member.email}</td>
                                     <td>
-                                        <span className={`${styles.badge} ${member.status === 'ativo' ? styles.active : styles.inactive}`}>
-                                            {member.status}
-                                        </span>
+                                        <Badge variant={member.status === 'ativo' ? 'success' : 'warning'}>
+                                            {member.status === 'ativo' ? 'Ativo' : 'Inativo'}
+                                        </Badge>
                                     </td>
                                 </tr>
                             ))}
