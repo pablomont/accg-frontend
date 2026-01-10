@@ -1,4 +1,3 @@
-//import { FileText } from 'lucide-react';
 import styles from './Boletos.module.css';
 
 import { accountsMock } from '@/data/accounts.mock';
