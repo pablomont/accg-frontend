@@ -4,7 +4,7 @@ import styles from './Associados.module.css';
 import { useState } from 'react';
 import { MemberCard } from '@/components/business/members/MemberCard';
 
-export default function Associados() {
+export function Associados() {
     const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
 
     const handleNovoAssociado = () => {
@@ -66,3 +66,5 @@ export default function Associados() {
         </div>
     );
 }
+
+export default Associados;
