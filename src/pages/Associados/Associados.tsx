@@ -2,6 +2,7 @@ import { LayoutGrid, List } from 'lucide-react';
 import { membersMock } from '@/data/members.mock'
 import styles from './Associados.module.css';
 import { useState } from 'react';
+import { MemberCard } from '@/components/business/members/MemberCard';
 
 export default function Associados() {
     const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid'); //para alternar entre a visualização de tabela ou grade
@@ -66,9 +67,9 @@ export default function Associados() {
     );
 }
 
-//temporario ate ser implementado o US01 
-const MemberCard = ({ member }: any) => (
-    <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-        {member.nome}
-    </div>
-);
+// //temporario ate ser implementado o US01 
+// const MemberCard = ({ member }: any) => (
+//     <div style={{ border: '1px solid #ccc', padding: '10px' }}>
+//         {member.nome}
+//     </div>
+// );
