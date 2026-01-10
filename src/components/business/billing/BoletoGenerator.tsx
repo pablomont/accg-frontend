@@ -75,7 +75,7 @@ export function BoletoGenerator() {
                 <Input 
                     id="valor" 
                     label="Valor (R$)" 
-                    type="number" 
+                    type="text" 
                     step="0.10" 
                     min="0.10"
                     lang="pt-BR"
