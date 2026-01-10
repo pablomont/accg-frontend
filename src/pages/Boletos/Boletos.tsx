@@ -1,11 +1,11 @@
 //import { FileText } from 'lucide-react';
 import styles from './Boletos.module.css';
-import { accountsMock } from '../../data/accounts.mock';
-import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
-import { PageTitle } from '../../components/ui/PageTitle';
+
+import { accountsMock } from '@/data/accounts.mock';
+import { BoletoGenerator } from '@/components/business/billing/BoletoGenerator';
+import { Badge, PageTitle, Table } from '@/components/ui';
 import { formatCurrency, formatDate } from '@/utils/formatters';
-import { Badge } from '../../components/ui/Badge';
-import { Table } from '@/components/ui';
+
 
 
 function isVencidoPorData(dataVencimento: string, status: string) {
@@ -14,6 +14,7 @@ function isVencidoPorData(dataVencimento: string, status: string) {
     const hoje = new Date();
     const vencimento = new Date(dataVencimento);
 
+    
     // compara apenas a data (sem hora)
     const hojeSemHora = new Date(
         hoje.getFullYear(),
