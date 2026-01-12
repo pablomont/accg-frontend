@@ -1,12 +1,15 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-// Cria instância do Axios com configurações base
-const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:10000/api',
+import axios from 'axios';
+// 1. Instância para Associados e Despesas
+export const api = axios.create({
+    baseURL: 'https://6957e32ef7ea690182d3626d.mockapi.io',
     timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+});
+// 2. Instância exclusiva para Boletos
+export const apiBoletos = axios.create({
+    baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io',
+    timeout: 10000,
 });
 
 // Interceptor de Request
@@ -43,6 +46,7 @@ api.interceptors.response.use(
                     break;
                 case 401:
                     console.error('[API] Unauthorized - Não autenticado');
+                    window.location.href = '/login';
                     // TODO: Redirecionar para login quando implementado
                     break;
                 case 403:
