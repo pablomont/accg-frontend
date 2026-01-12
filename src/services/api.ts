@@ -2,7 +2,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 // Cria instância do Axios com configurações base
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:10000/api',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
@@ -12,12 +12,12 @@ const api = axios.create({
 // Interceptor de Request
 api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-        // TODO: Adicionar token de autenticação quando implementado
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //   config.headers.Authorization = `Bearer ${token}`;
-        // }
+        const token = localStorage.getItem('token');
 
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+    
         console.log(`[API] ${config.method?.toUpperCase()} ${config.url}`);
         return config;
     },
