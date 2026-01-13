@@ -1,11 +1,32 @@
 import React from 'react';
 import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
-import { summaryCards } from '@/data/dashboard.mock';
+import { financeMock } from '@/data/finance.mock';
+import { Receipt } from 'lucide-react';
 
 export function Dashboard() {
     // 1. Controle de Estado do Modal (Exemplo de useState)
     const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+    const calcularTotalDespesas = () => {
+        let total = 0;
+        financeMock.forEach((despesa) => {
+            total += despesa.valor;
+        });
+        
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(total);
+    };
+
+    const despesaCard = {
+        id: 3,
+        title: 'Despesas do Mês',
+        value: calcularTotalDespesas(), 
+        icon: Receipt,
+        color: 'warning',
+    };
 
     return (
         <div className={styles.dashboard}>
@@ -18,23 +39,20 @@ export function Dashboard() {
                     </p>
                 </div>
             </div>
-
-            {/* 4. Grid de Cards Principais (KPIs) */}
+                {/* 4. Grid de Cards */}
             <div className={styles.cardsGrid}>
-                {summaryCards.map((card) => (
-                    <Card
-                        key={card.id}
-                        className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
-                    >
-                        <div className={styles.cardIcon}>
-                            <card.icon size={28} />
-                        </div>
-                        <div className={styles.cardContent}>
-                            <span className={styles.cardValue}>{card.value}</span>
-                            <span className={styles.cardTitle}>{card.title}</span>
-                        </div>
-                    </Card>
-                ))}
+                <Card
+                    key={despesaCard.id}
+                    className={`${styles.card} ${styles[`card${despesaCard.color.charAt(0).toUpperCase() + despesaCard.color.slice(1)}`]}`}
+                >
+                    <div className={styles.cardIcon}>
+                        <despesaCard.icon size={28} />
+                    </div>
+                    <div className={styles.cardContent}>
+                        <span className={styles.cardValue}>{despesaCard.value}</span>
+                        <span className={styles.cardTitle}>{despesaCard.title}</span>
+                    </div>
+                </Card>
             </div>
 
             {/* 5. Seção de Listagem (Tabela) */}
