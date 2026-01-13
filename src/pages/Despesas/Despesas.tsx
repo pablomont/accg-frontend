@@ -1,9 +1,9 @@
-import styles from "./Despesas.module.css";
 import { Badge, Select, PageTitle, Table, Button, Input, Modal } from "@/components/ui";
 import { financeMock, categoriesMock } from "@/data/finance.mock";
-import { formatDate, formatCurrency } from "@/utils";
+import { formatDate, formatCurrency, maskCurrency } from "@/utils";
 import { useState } from "react";
-
+import styles from './Despesas.module.css';
+import { FinancialSummary, Transaction } from '@/components/business/finance/FinancialSummary';
 
 export function Despesas() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +16,13 @@ export function Despesas() {
     return categoria ? categoria.nome : "—";
   };
 
+  const mockTransactions: Transaction[] = [
+                {amount: 5000, type: 'income'},
+                {amount: 1200, type: 'expense'},
+                {amount: 800, type: 'expense'},
+                {amount: 2500, type: 'income'},
+                {amount: 1500, type: 'income'}
+            ]
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -47,7 +54,7 @@ export function Despesas() {
             label="Valor"
             placeholder="R$ 0,00"
             value={valor}
-            onChange={(e)=> setValor(e.target.value)}
+            onChange={(e)=> setValor(maskCurrency(e.target.value))}
             />
           </div>
 
@@ -76,6 +83,8 @@ export function Despesas() {
 
         </Modal>
       </div>
+
+      <FinancialSummary transactions={mockTransactions} />
 
       <PageTitle>Livro Caixa</PageTitle>
 
