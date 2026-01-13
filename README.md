@@ -129,39 +129,28 @@ Use o dashboard como base para criar as páginas de Associados e Financeiro!
 > 📘 **Guia Técnico:**
 > *   [US12: Configuração do Cliente Axios](https://github.com/pablomont/accg-frontend/issues/12)
 > *   [US13: Integração de Associados](https://github.com/pablomont/accg-frontend/issues/13)
-> *   [US14: Integração de Despesas](https://github.com/pablomont/accg-frontend/issues/14)
-> *   [US15: Integração de Boletos](https://github.com/pablomont/accg-frontend/issues/31)
+> *   [US14: Integração Financeira e Boletos](https://github.com/pablomont/accg-frontend/issues/14)
 
-Nesta fase, vocês usarão uma **API Remota**.
-O objetivo é substituir os mocks locais (`src/data/*.mock.ts`) por chamadas reais via **Axios**.
+Nesta fase, você deve remover os arquivos de `src/data` e usar o **Axios** para buscar dados reais.
+
 **1. Configurar Axios (`src/services/api.ts`)**
-Como temos bases diferentes para tipos de dados diferentes (devido a limitações do MockAPI), vamos criar duas instâncias:
 ```typescript
 import axios from 'axios';
-// Instância para Associados e Despesas
 export const api = axios.create({
-    baseURL: 'https://6957e32ef7ea690182d3626d.mockapi.io'
-});
-// Instância para Boletos
-export const apiBoletos = axios.create({
-    baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io'
+    baseURL: 'http://api-accg.com.br/api' // URL Hipotética
 });
 ```
-Ao fim dessa fase, deve-se remover os arquivos de `src/data`.
 
-**. Endpoints para consumir (Substituir Mocks):**
+**2. Endpoints para consumir (Substituir Mocks):**
 
-
-| Recurso | Método | Instância | Endpoint | Payload (Exemplo) | Descrição |
-|---|---|---|---|---|---|
-| **Associados** | `GET` | `api` | `/associados` | - | Lista todos os associados |
-| | `POST` | `api` | `/associados` | `{ "nome": "...", "cpfCnpj": "..." }` | Cria novo associado |
-| | `PUT` | `api` | `/associados/:id` | `{ "nome": "..." }` | Atualiza associado |
-| | `DELETE` | `api` | `/associados/:id` | - | Remove associado |
-| **Despesas** | `GET` | `api` | `/despesas` | - | Lista contas a pagar |
-| | `POST` | `api` | `/despesas` | `{ "descricao": "...", "valor": 100 }` | Cria despesa |
-| **Boletos** | `GET` | `apiBoletos` | `/boletos` | - | Lista boletos |
-| | `POST` | `apiBoletos` | `/boletos` | `{ "associadoId": "...", "valor": 150 }` | Gera novo boleto |
+| Recurso | Método | Endpoint Hipotético | Payload (Body) |
+|---|---|---|---|
+| **Associados** | GET | `/associados` | - |
+| **Criar Associado** | POST | `/associados` | `{ nome, cpf, email }` |
+| **Despesas** | GET | `/despesas` | - |
+| **Criar Despesa** | POST | `/despesas` | `{ descricao, valor, categoria }` |
+| **Boletos** | GET | `/boletos` | - |
+| **Gerar Boleto** | POST | `/boletos/gerar` | `{ associadoId, valor }` |
 
 
 ### 🧹 Governança & Padronização (Tarefa de Exemplo)

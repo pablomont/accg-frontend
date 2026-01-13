@@ -121,31 +121,3 @@ export function Despesas() {
 }
 
 export default Despesas;
-            <th>Categoria</th>
-            <th>Valor</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {financeMock.map((despesa) => (
-            <tr key={despesa.id}>
-              <td>{formatDate(despesa.data)}</td>
-              <td>{despesa.descricao}</td>
-              <td>{getCategoriaNome(despesa.categoriaId)}</td>
-              <td>{formatCurrency(despesa.valor)}</td>
-              <td>
-                {despesa.status === "pago" ? (
-                  <Badge variant="success">Pago</Badge>
-                ) : (
-                  <Badge variant="warning">Pendente</Badge>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
-  );
-}
-
-export default Despesas;

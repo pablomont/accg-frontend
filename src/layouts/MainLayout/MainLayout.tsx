@@ -13,9 +13,6 @@ export function MainLayout() {
             <div className={styles.main}>
                 <Header />
                 <main className={styles.content}>
-            <div className={styles.main}>
-                <Header />
-                <main className={styles.content}>
                     <Outlet />
                 </main>
             </div>
