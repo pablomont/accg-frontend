@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import axios from 'axios';
 // 1. Instância para Associados e Despesas
