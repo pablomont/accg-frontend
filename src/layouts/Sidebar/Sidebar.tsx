@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import {
     LayoutDashboard,
+    LayoutDashboard,
     Users,
     Receipt,
     FileText
@@ -12,7 +13,6 @@ import logoImage from '@/assets/images/accg-logo.jpg';
 const menuItems = [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/associados', label: 'Associados', icon: Users },
-    { path: '/despesas', label: 'Despesas', icon: Receipt },
     { path: '/boletos', label: 'Boletos/PIX', icon: FileText },
 ];
 
@@ -21,6 +21,20 @@ type SidebarProps = {
     onToggle?: () => void;
 };
 
+export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
+    return (
+        <aside className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>
+            
+            <button 
+                className={styles.toggleBtn} 
+                onClick={() => onToggle && onToggle()}
+            >
+                {isCollapsed ? <ChevronRight size={14}/> : <ChevronLeft size={14}/>}
+            </button>
+
+            <div className={styles.titleSection}>
+                <img src={logoImage} alt="Logo ACCG" className={styles.logoImage} />
+            </div>
 export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
     return (
         <aside className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>
