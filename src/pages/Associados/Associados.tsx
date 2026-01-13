@@ -3,7 +3,8 @@ import { membersMock } from '@/data/members.mock'
 import styles from './Associados.module.css';
 import { useState } from 'react';
 import { MemberCard } from '@/components/business/members/MemberCard';
-import { Badge } from '@/components/ui';
+import { Badge, PageTitle } from '@/components/ui';
+import { Table } from '@/components/ui';
 
 export function Associados() {
     const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
@@ -16,7 +17,7 @@ export function Associados() {
         <div className={styles.page}>
             <div className={styles.header}>
                 <div>
-                    <h1 className={styles.title}>Gestão de Associados</h1>
+                    <PageTitle>Gestão de Associados</PageTitle>
                     <p className={styles.subtitle}>Gerencie todos os associados da sua organização.</p>
                 </div>
                 <button className={styles.addButton} onClick={handleNovoAssociado}> 
@@ -33,12 +34,12 @@ export function Associados() {
                 </button>
             </div>
 
-            <main className={styles.content}>
+            <main>
                 {viewMode === 'grid' ? (
                     <div className={styles.gridContainer}>
                         {membersMock.map((member) => (<MemberCard key={member.id} member={member} />))}
                     </div>
-                ) : (<table className={styles.table}> 
+                ) : (<Table> 
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -61,7 +62,7 @@ export function Associados() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </Table>
                 )}
             </main>
         </div>
