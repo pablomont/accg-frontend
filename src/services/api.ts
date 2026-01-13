@@ -2,34 +2,15 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import axios from 'axios';
 // 1. Instância para Associados e Despesas
-export const api = axios.create({
+ const api = axios.create({
     baseURL: 'https://6957e32ef7ea690182d3626d.mockapi.io',
     timeout: 10000,
 });
 // 2. Instância exclusiva para Boletos
-export const apiBoletos = axios.create({
+ const apiBoletos = axios.create({
     baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io',
     timeout: 10000,
 });
-
-// Interceptor de Request
-api.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-    
-        console.log(`[API] ${config.method?.toUpperCase()} ${config.url}`);
-        return config;
-    },
-    (error: AxiosError) => {
-        console.error('[API] Request Error:', error);
-        return Promise.reject(error);
-    }
-);
-
 // Interceptor de Response
 api.interceptors.response.use(
     (response) => {
@@ -46,8 +27,6 @@ api.interceptors.response.use(
                     break;
                 case 401:
                     console.error('[API] Unauthorized - Não autenticado');
-                    window.location.href = '/login';
-                    // TODO: Redirecionar para login quando implementado
                     break;
                 case 403:
                     console.error('[API] Forbidden - Sem permissão');
@@ -71,4 +50,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
+export default {api; apiBoletos}
