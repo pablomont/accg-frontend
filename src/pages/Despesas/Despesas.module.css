@@ -2,6 +2,9 @@
 .page {
     max-width: var(--content-max-width);
     margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .header {
@@ -52,4 +55,45 @@
     font-size: var(--font-size-sm);
     color: var(--color-gray-400);
     margin: 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.select {
+  height: 50px;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: var(--color-gray-100);
+  font-size: 1rem;
+}
+
+.actionsBox {
+    margin-top: var(--spacing-8);
+    padding-top: var(--spacing-6);
+    border-top: 1px solid var(--color-gray-200);
+
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-2);
+}
+
+.headerActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--spacing-6);
+}
+
+.deButton {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.deButton:hover {
+    background-color: #b91c1c !important;
 }
