@@ -1,32 +1,16 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-// Cria instância do Axios com configurações base
-const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+import axios from 'axios';
+// 1. Instância para Associados e Despesas
+ const api = axios.create({
+    baseURL: 'https://6957e32ef7ea690182d3626d.mockapi.io',
     timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
-
-// Interceptor de Request
-api.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
-        // TODO: Adicionar token de autenticação quando implementado
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //   config.headers.Authorization = `Bearer ${token}`;
-        // }
-
-        console.log(`[API] ${config.method?.toUpperCase()} ${config.url}`);
-        return config;
-    },
-    (error: AxiosError) => {
-        console.error('[API] Request Error:', error);
-        return Promise.reject(error);
-    }
-);
-
+// 2. Instância exclusiva para Boletos
+ const apiBoletos = axios.create({
+    baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io',
+    timeout: 10000,
+});
 // Interceptor de Response
 api.interceptors.response.use(
     (response) => {
@@ -43,7 +27,6 @@ api.interceptors.response.use(
                     break;
                 case 401:
                     console.error('[API] Unauthorized - Não autenticado');
-                    // TODO: Redirecionar para login quando implementado
                     break;
                 case 403:
                     console.error('[API] Forbidden - Sem permissão');
@@ -67,4 +50,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
+export default {api; apiBoletos}
