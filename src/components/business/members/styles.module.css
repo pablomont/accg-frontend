@@ -1,8 +1,12 @@
 .container{
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 1%;
+    padding-bottom: 5px;
+    padding-top: 12px;
     gap: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .iconWrapper{
@@ -23,6 +27,7 @@
 }
 
 .info h3{
+    justify-items: center;
     margin: 0;
     font-size: var(--font-size-xl);
     color: var(--color-dark);
