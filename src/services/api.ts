@@ -67,4 +67,13 @@ api.interceptors.response.use(
     }
 );
 
+// Instância específica para API de Boletos
+export const apiBoletos = axios.create({
+    baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io',
+    timeout: 10000,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
 export default api;

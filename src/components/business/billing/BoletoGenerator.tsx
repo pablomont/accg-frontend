@@ -12,10 +12,15 @@ const INITIAL_STATE: BoletoFormData = {
     descricao: ''
 };
 
-export function BoletoGenerator() {
+interface BoletoGeneratorProps {
+    onSuccess?: () => void;
+}
+
+export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
     const [formData, setFormData] = useState<BoletoFormData>(INITIAL_STATE);
     const [errors, setErrors] = useState<Partial<Record<keyof BoletoFormData, string>>>({});
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const associadoSelecionado = membersMock.find(m => m.id === formData.associadoId);
 
@@ -46,7 +51,12 @@ export function BoletoGenerator() {
         else if (isPastDate(formData.dataVencimento)) newErrors.dataVencimento = 'A data de vencimento não pode ser anterior à data atual.';
 
         setErrors(newErrors);
-        if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
+        if (Object.keys(newErrors).length === 0) {
+            // TODO: Implementar chamada POST para API
+            // await apiBoletos.post('/boletos', { ... })
+            console.log('Dados do boleto a ser gerado:', formData);
+            setShowSuccessModal(true);
+        }
     };
 
     const handleCloseModal = () => {
@@ -98,7 +108,9 @@ export function BoletoGenerator() {
                     value={formData.descricao} onChange={handleChange} />
 
                 <div className={styles.footer}>
-                    <Button onClick={handleGerarCobranca} className={styles.button}>Gerar Cobrança</Button>
+                    <Button onClick={handleGerarCobranca} className={styles.button} disabled={isLoading}>
+                        {isLoading ? 'Gerando...' : 'Gerar Cobrança'}
+                    </Button>
                 </div>
             </Card>
 
