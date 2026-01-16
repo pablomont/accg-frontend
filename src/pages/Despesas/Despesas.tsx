@@ -29,7 +29,7 @@ export function Despesas() {
       alert('Todos os campos devem ser preenchidos.')
       return;
     }
-    alert('Dados preenchidos com sucesso!')
+    alert('Dados preenchidos com sucesso.')
   }
   return (
     <div className={styles.page}>
@@ -84,7 +84,7 @@ export function Despesas() {
           <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
               Cancelar
           </Button>
-          <Button className={styles.deButton} onClick={() => alert(`${descricao} | ${valor} | ${categoria}`)}>
+          <Button className={styles.deButton} onClick={validacaoBotaoSalvar}>
               Salvar
           </Button>
           </div>
