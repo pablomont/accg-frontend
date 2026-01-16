@@ -23,6 +23,14 @@ export function Despesas() {
                 {amount: 2500, type: 'income'},
                 {amount: 1500, type: 'income'}
             ]
+  
+  const validacaoBotaoSalvar = () => {
+    if(!descricao || !valor || !categoria){
+      alert('Todos os campos devem ser preenchidos.')
+      return;
+    }
+    alert('Dados preenchidos com sucesso!')
+  }
   return (
     <div className={styles.page}>
       <div className={styles.header}>
