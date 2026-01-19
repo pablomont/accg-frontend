@@ -1,107 +1,143 @@
-import { useState, useEffect } from 'react';
-import { BoletoGenerator } from '../../components/business/billing/BoletoGenerator';
-import { Table, Badge } from '@/components/ui';
-import { apiBoletos } from '@/services/api';
-import { Boleto } from '@/types/boleto';
-import { formatCurrency } from '@/utils/formatters';
+import { useEffect, useState } from 'react';
 import styles from './Boletos.module.css';
 
+import { apiBoletos } from '@/services/api';
+import { BoletoGenerator } from '@/components/business/billing/BoletoGenerator';
+import { Badge, PageTitle, Table } from '@/components/ui';
+import { formatCurrency, formatDate } from '@/utils/formatters';
+
+type BoletoApi = {
+  id: string;
+  valor: number;
+
+  dataEmissao?: string;
+  dataVencimento?: string;
+  vencimento?: string;
+
+  status?: 'pago' | 'pendente' | 'vencido';
+
+  associado?: {
+    nomeCompleto?: string;
+    nome?: string;
+  };
+};
+
+function isVencidoPorData(dataVencimento: string | undefined, status?: string) {
+  if (!dataVencimento) return false;
+  if (status === 'pago') return false;
+
+  const hoje = new Date();
+  const vencimento = new Date(dataVencimento);
+
+  const hojeSemHora = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  const vencimentoSemHora = new Date(
+    vencimento.getFullYear(),
+    vencimento.getMonth(),
+    vencimento.getDate()
+  );
+
+  return vencimentoSemHora < hojeSemHora;
+}
+
 export function Boletos() {
-    const [boletos, setBoletos] = useState<Boleto[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [boletos, setBoletos] = useState<BoletoApi[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState<string | null>(null);
 
-    const fetchBoletos = async () => {
-        try {
-            setIsLoading(true);
-            const response = await apiBoletos.get('/boletos');
-            setBoletos(response.data);
-        } catch (error) {
-            console.error("Erro ao buscar boletos", error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  const carregarBoletos = async () => {
+    try {
+      setLoading(true);
+      setErro(null);
 
-    useEffect(() => {
-        fetchBoletos();
-    }, []);
+      const response = await apiBoletos.get('/boletos');
+      setBoletos(response.data);
+    } catch (e) {
+      console.error('Erro ao buscar boletos', e);
+      setErro('Não foi possível carregar o histórico de cobranças.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const getStatusVariant = (status: string) => {
-        switch (status) {
-            case 'pago':
-                return 'success';
-            case 'pendente':
-                return 'warning';
-            case 'vencido':
-                return 'danger';
-            case 'cancelado':
-                return 'neutral';
-            default:
-                return 'neutral';
-        }
-    };
+  useEffect(() => {
+    carregarBoletos();
+  }, []);
 
-    const formatDate = (dateString?: string) => {
-        if (!dateString) return '-';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR');
-    };
+  return (
+    <div className={styles.page}>
+      <PageTitle>Boletos e Cobranças</PageTitle>
 
-    // Campos de API antigos usavam "vencimento" em vez de "dataVencimento"
-    const getDueDate = (boleto: Boleto & { vencimento?: string }) => boleto.dataVencimento || boleto.vencimento || '';
-    const getEmissaoDate = (boleto: Boleto) => boleto.dataEmissao || '';
-    const getStatus = (boleto: Boleto) => boleto.status || 'pendente';
+      <div className={styles.header}>
+        <h1 className={styles.title}>Boletos e PIX</h1>
+        <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
+      </div>
 
-    return (
-        <div className={styles.page}>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Boletos e PIX</h1>
-                <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
-            </div>
+      <div className={styles.grid}>
+        <section className={styles.card}>
+          <h2>Histórico de Cobranças</h2>
 
-            <BoletoGenerator onSuccess={fetchBoletos} />
+          {loading ? (
+            <p>Carregando...</p>
+          ) : erro ? (
+            <p>{erro}</p>
+          ) : (
+            <Table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Nome do Associado</th>
+                  <th>Valor</th>
+                  <th>Vencimento</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
 
-            <div className={styles.tableSection}>
-                <h2 className={styles.sectionTitle}>Boletos Gerados</h2>
-                {isLoading ? (
-                    <p>Carregando boletos...</p>
-                ) : boletos.length === 0 ? (
-                    <p>Nenhum boleto encontrado.</p>
-                ) : (
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Associado ID</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>Vencimento</th>
-                                <th>Emissão</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {boletos.map(boleto => (
-                                <tr key={boleto.id}>
-                                    <td>{boleto.id}</td>
-                                    <td>{boleto.associadoId}</td>
-                                    <td>{boleto.descricao || '-'}</td>
-                                    <td>{formatCurrency(boleto.valor)}</td>
-                                    <td>{formatDate(getDueDate(boleto))}</td>
-                                    <td>{formatDate(getEmissaoDate(boleto))}</td>
-                                    <td>
-                                        <Badge variant={getStatusVariant(getStatus(boleto))}>
-                                            {getStatus(boleto).toUpperCase()}
-                                        </Badge>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                )}
-            </div>
-        </div>
-    );
+              <tbody>
+                {boletos.map((boleto) => {
+                  const venc = boleto.dataVencimento ?? boleto.vencimento;
+                  const status = boleto.status ?? 'pendente';
+
+                  return (
+                    <tr key={boleto.id}>
+                      <td>{boleto.dataEmissao ? formatDate(boleto.dataEmissao) : '—'}</td>
+
+                      <td>
+                        {boleto.associado?.nomeCompleto ??
+                          boleto.associado?.nome ??
+                          '—'}
+                      </td>
+
+                      <td>{formatCurrency(boleto.valor)}</td>
+
+                      <td>{venc ? formatDate(venc) : '—'}</td>
+
+                      <td>
+                        {isVencidoPorData(venc, status) ? (
+                          <Badge variant="danger">Vencido</Badge>
+                        ) : status === 'pago' ? (
+                          <Badge variant="success">Pago</Badge>
+                        ) : (
+                          <Badge variant="warning">Pendente</Badge>
+                        )}
+                      </td>
+
+                      <td>⬇</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          )}
+        </section>
+
+        <aside className={styles.card}>
+          {/* quando gerar cobrança, atualiza a tabela */}
+          <BoletoGenerator onSuccess={carregarBoletos} />
+        </aside>
+      </div>
+    </div>
+  );
 }
 
 export default Boletos;
