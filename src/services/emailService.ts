@@ -1,12 +1,7 @@
 import emailjs from '@emailjs/browser'
 import { formatCurrency } from '@/utils'
+import { BoletoFormData } from '@/types';
 
-export interface BoletoFormData{
-    nome: string;
-    valor: number;
-    vencimento: string;
-    descricao: string;
-}
 
 export default class EmailService{
     private SERVICE_ID = 'service_fzi27sq';
