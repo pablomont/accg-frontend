@@ -10,6 +10,7 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
     },
     "dependencies": {
+        "@emailjs/browser": "^4.4.1",
         "axios": "^1.6.0",
         "lucide-react": "^0.294.0",
         "react": "^18.2.0",
