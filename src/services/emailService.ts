@@ -4,7 +4,7 @@ import { formatDate } from '@/utils';
 import { Boleto } from '@/types';
 
 
-export default class EmailService{
+class EmailService{
     private SERVICE_ID = 'service_fzi27sq';
     private TEMPLATE_ID = 'template_m73prwg';
     private PUBLIC_KEY = 'DM2LYUOXZVvRjO2bl';
@@ -25,3 +25,5 @@ export default class EmailService{
         return emailjs.send(this.SERVICE_ID, this.TEMPLATE_ID, template);
     }
 }
+
+export const emailService = new EmailService();
