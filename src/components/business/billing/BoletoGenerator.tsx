@@ -69,6 +69,7 @@ export function BoletoGenerator() {
     const handleCloseModal = () => {
         setShowSuccessModal(false);
         setFormData(INITIAL_STATE);
+        setValorInput('');
     };
 
     return (
