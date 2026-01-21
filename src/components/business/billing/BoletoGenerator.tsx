@@ -34,6 +34,22 @@ export function BoletoGenerator() {
         if (errors[id as keyof BoletoFormData]) setErrors(prev => ({ ...prev, [id]: '' }));
     };
 
+       const handleValorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const masked = maskCurrency(e.target.value);
+        const raw = Number (unmask(masked)) /100;// number   <<<
+
+        setValorInput(masked);
+
+        setFormData(prev =>({
+            ...prev,
+            valor: raw
+        }));
+
+        if (errors.valor){
+            setErrors(prev =>({...prev, valor: ''}));
+        }
+    };
+
     const isPastDate = (date: string) => {
         if (!date) return false;
         return date < getTodayDate();
