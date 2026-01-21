@@ -94,9 +94,9 @@ export function BoletoGenerator() {
                     id="valor" 
                     label="Valor (R$)" 
                     type="text" 
-                    lang="pt-BR"
-                    value={formData.valor ? formData.valor.toFixed(2) : ''} 
-                    onChange={handleChange} 
+                    inputMode="numeric"
+                    value={valorInput} 
+                    onChange={handleValorChange} 
                     error={errors.valor} 
                 />
 
