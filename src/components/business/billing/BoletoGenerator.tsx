@@ -16,6 +16,7 @@ export function BoletoGenerator() {
     const [formData, setFormData] = useState<BoletoFormData>(INITIAL_STATE);
     const [errors, setErrors] = useState<Partial<Record<keyof BoletoFormData, string>>>({});
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [valorInput, setValorInput] = useState('');
 
     const associadoSelecionado = membersMock.find(m => m.id === formData.associadoId);
 
