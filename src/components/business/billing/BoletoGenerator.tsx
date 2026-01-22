@@ -4,7 +4,7 @@ import { Card, Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
-import { apiBoletos } from '@/services/api';
+import apis from '@/services/api';
 
 const INITIAL_STATE: BoletoFormData = {
   associadoId: '',
@@ -70,7 +70,7 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
     try {
       setIsLoading(true);
 
-      await apiBoletos.post('/boletos', {
+      await apis.apiBoletos.post('/boletos', {
         associadoId: formData.associadoId,
         valor: formData.valor,
         vencimento: formData.dataVencimento,
@@ -130,7 +130,7 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
           id="descricao"
           label="Descrição (Opcional)"
           type="text"
-          placeholder="A descrição informada será impressa na fatura"
+          placeholder="A descrição constará na fatura."
           value={formData.descricao}
           onChange={handleChange}
         />

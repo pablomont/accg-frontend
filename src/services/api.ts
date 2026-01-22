@@ -6,8 +6,8 @@ const api = axios.create({
     timeout: 10000,
 });
 
-// Instância específica para API de Boletos
-export const apiBoletos = axios.create({
+// 2. Instância específica para API de Boletos
+const apiBoletos = axios.create({
     baseURL: 'https://6957e717f7ea690182d36fda.mockapi.io',
     timeout: 10000,
     headers: {
@@ -15,4 +15,4 @@ export const apiBoletos = axios.create({
     },
 });
 
-export default api;
+export default { api, apiBoletos };

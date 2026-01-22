@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Boletos.module.css';
 
-import { apiBoletos } from '@/services/api';
+import apis from '@/services/api';
 import { BoletoGenerator } from '@/components/business/billing/BoletoGenerator';
 import { Badge, PageTitle, Table } from '@/components/ui';
 import { formatCurrency, formatDate } from '@/utils/formatters';
@@ -12,7 +12,6 @@ type BoletoApi = {
 
   dataEmissao?: string;
   dataVencimento?: string;
-  vencimento?: string;
 
   status?: 'pago' | 'pendente' | 'vencido';
 
@@ -49,7 +48,7 @@ export function Boletos() {
       setLoading(true);
       setErro(null);
 
-      const response = await apiBoletos.get('/boletos');
+      const response = await apis.apiBoletos.get('/boletos');
       setBoletos(response.data);
     } catch (e) {
       console.error('Erro ao buscar boletos', e);
@@ -95,7 +94,7 @@ export function Boletos() {
 
               <tbody>
                 {boletos.map((boleto) => {
-                  const venc = boleto.dataVencimento ?? boleto.vencimento;
+                  const venc = boleto.dataVencimento;
                   const status = boleto.status ?? 'pendente';
 
                   return (
