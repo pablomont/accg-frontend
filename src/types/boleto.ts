@@ -22,6 +22,7 @@ export interface Boleto {
 
 export interface BoletoFormData {
     associadoId: string;
+    // associado?: Associado;
     valor: number;
     dataVencimento: string;
     descricao: string;

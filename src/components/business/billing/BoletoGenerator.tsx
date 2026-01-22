@@ -4,6 +4,7 @@ import { Card, Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
+import { emailService } from '@/services/emailService';
 
 const INITIAL_STATE: BoletoFormData = {
     associadoId: '',
@@ -38,7 +39,7 @@ export function BoletoGenerator() {
         return date < getTodayDate();
     };
 
-    const handleGerarCobranca = () => {
+    const handleGerarCobranca = async () => {
         const newErrors: Partial<Record<keyof BoletoFormData, string>> = {};
         if (!formData.associadoId) newErrors.associadoId = 'Selecione um associado.';
         if (formData.valor <= 0) newErrors.valor = 'O valor deve ser maior que zero.';
@@ -47,6 +48,13 @@ export function BoletoGenerator() {
 
         setErrors(newErrors);
         if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
+
+        try{
+            console.log("Dados sendo enviados:", formData);
+            await emailService.enviaCobranca(formData as any);
+        } catch (error){
+            console.error('Falha ao enviar: ', error);
+        }
     };
 
     const handleCloseModal = () => {
@@ -105,7 +113,8 @@ export function BoletoGenerator() {
             <Modal isOpen={showSuccessModal} onClose={handleCloseModal} title="Cobrança Gerada!">
                 <div className={styles.modalContent}>
                     <p className={styles.modalText}>
-                        Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
+                        {/* Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso.  */}
+                        A cobrança no valor de <strong>{formatCurrency(formData.valor)}</strong> foi gerada com sucesso. O boleto foi enviado para o email de <strong>{associadoSelecionado?.nome}</strong>.
                     </p>
                     {formData.descricao && <p className={styles.modalText}><strong>Descrição:</strong> {formData.descricao}</p>}
                     <div className={styles.modalActions}>

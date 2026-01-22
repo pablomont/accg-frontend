@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 import { formatCurrency } from '@/utils';
 import { formatDate } from '@/utils';
-import { Boleto } from '@/types';
+import { Boleto, BoletoFormData } from '@/types';
 
 
 class EmailService{
@@ -15,6 +15,7 @@ class EmailService{
 
     // async/await --> JavaScript Assíncrono: garante um tempo de espera com uma promessa (Promise) de que algo será executado.
     public async enviaCobranca(dados: Boleto){
+
         const template = {
             nome: dados.associado?.nome,
             valor: formatCurrency(dados.valor),
