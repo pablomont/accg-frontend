@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    padding: var(--spacing-2) 0;
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.field label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+}
+
+.field input[type="text"],
+.field input[type="email"] {
+    background-color: var(--color-gray-50); 
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-900);
+    outline: none;
+}
+
+.field input::placeholder {
+    color: var(--color-gray-400);
+}
+
+.radioGroup {
+    display: flex;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-1);
+}
+
+.radioGroup label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    cursor: pointer;
+    font-weight: var(--font-weight-normal);
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-6);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-gray-100);
+}
+
+.cancelBtn {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-700);
+    padding: var(--spacing-2) var(--spacing-6);
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+}
+
+.saveBtn {
+    background-color: var(--color-gray-900); 
+    color: var(--color-white);
+    padding: var(--spacing-2) var(--spacing-6);
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+}
+
+.saveBtn:hover, .cancelBtn:hover {
+    opacity: 0.8;
+}
