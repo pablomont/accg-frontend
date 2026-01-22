@@ -5,12 +5,14 @@ import { useState } from 'react';
 import { MemberCard } from '@/components/business/members/MemberCard';
 import { Badge, PageTitle } from '@/components/ui';
 import { Table } from '@/components/ui';
+import { MemberFormModal } from '@/components/business/members/MemberFormModal';
 
 export function Associados() {
     const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     const handleNovoAssociado = () => {
-        console.log("Botao clicado") //implementar US03 aqui
+        setIsModalOpen(true);
     };
 
     return (
@@ -65,6 +67,7 @@ export function Associados() {
                     </Table>
                 )}
             </main>
+            <MemberFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </div>
     );
 }
