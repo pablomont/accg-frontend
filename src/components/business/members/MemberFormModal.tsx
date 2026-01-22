@@ -1,4 +1,4 @@
-import { Button, Modal } from "@/components/ui";
+import { Modal } from "@/components/ui";
 import styles from './MemberFormModal.module.css'
 import { useState } from "react";
 
