@@ -60,5 +60,3 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
         </aside>
     );
 }
-
-export default Sidebar;
