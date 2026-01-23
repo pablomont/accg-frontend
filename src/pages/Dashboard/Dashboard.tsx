@@ -106,27 +106,27 @@ export function Dashboard() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/12/2023</td>
-                                <td>Mensalidade - João Silva</td>
-                                <td>Receita</td>
-                                <td>R$ 150,00</td>
-                                <td><Badge variant="success">Pago</Badge></td>
-                            </tr>
-                            <tr>
-                                <td>09/12/2023</td>
-                                <td>Conta de Luz</td>
-                                <td>Despesa Fixa</td>
-                                <td>R$ 450,00</td>
-                                <td><Badge variant="success">Pago</Badge></td>
-                            </tr>
-                            <tr>
-                                <td>08/12/2023</td>
-                                <td>Manutenção Ar-Condicionado</td>
-                                <td>Manutenção</td>
-                                <td>R$ 200,00</td>
-                                <td><Badge variant="warning">Pendente</Badge></td>
-                            </tr>
+                            {accountsMock.map(boleto => (
+                                <tr key={boleto.id}>
+                                    <td>{new Date(boleto.dataVencimento).toLocaleDateString()}</td>
+                                    <td>{boleto.descricao}</td>
+                                    <td>Receita</td>
+                                    <td>R$ {boleto.valor.toFixed(2)}</td>
+                                    <td>
+                                        <Badge
+                                            variant={
+                                                boleto.status === 'pago'
+                                                    ? 'success'
+                                                    : boleto.status === 'pendente'
+                                                    ? 'warning'
+                                                    : 'danger'
+                                            }
+                                        >
+                                            {boleto.status.charAt(0).toUpperCase() + boleto.status.slice(1)}
+                                        </Badge>
+                                    </td>
+                                </tr>
+                            ))}                 
                         </tbody>
                     </Table>
                 </Card>
