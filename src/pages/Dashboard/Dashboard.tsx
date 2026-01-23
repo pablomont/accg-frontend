@@ -1,15 +1,56 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
-import { summaryCards } from '@/data/dashboard.mock';
+import { Users, UserCheck, Receipt, FileText } from 'lucide-react';
+import { membersMock } from '@/data/members.mock';
 import { accountsMock } from '@/data/accounts.mock';
 
 export function Dashboard() {
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const pendingBillsCount = accountsMock.filter(
-        (account) => account.status !== 'pago'
-    ).length;
+    const { totalAssociados, associadosAtivos, boletosPendentes } = useMemo(() => {
+        const total = membersMock.length;
+        const ativos = membersMock.filter(m => m.status === 'ativo').length;
+
+        const pendentes = accountsMock.filter(boleto => boleto.status !== 'pago').length;
+
+        return {
+            totalAssociados: total,
+            associadosAtivos: ativos,
+            boletosPendentes: pendentes,
+        };
+    }, [membersMock, accountsMock]);
+
+    const summaryCardsDynamic = [
+        {
+            id: 1,
+            title: 'Total de Associados',
+            value: totalAssociados.toString(),
+            icon: Users,
+            color: 'primary',
+        },
+        {
+            id: 2,
+            title: 'Associados Ativos',
+            value: associadosAtivos.toString(),
+            icon: UserCheck,
+            color: 'success',
+        },
+        {
+            id: 3,
+            title: 'Despesas do Mês',
+            value: 'R$ 12.450,00',
+            icon: Receipt,
+            color: 'warning',
+        },
+        {
+            id: 4,
+            title: 'Boletos Pendentes',
+            value: boletosPendentes.toString(),
+            icon: FileText,
+            color: 'danger',
+        },
+    ];
 
     return (
         <div className={styles.dashboard}>
@@ -23,13 +64,7 @@ export function Dashboard() {
             </div>
 
             <div className={styles.cardsGrid}>
-                {summaryCards.map((card) => {
-                    const cardValue =
-                        card.color === 'danger'
-                            ? pendingBillsCount
-                            : card.value;
-
-                    return (
+                {summaryCardsDynamic.map(card => (
                         <Card
                             key={card.id}
                             className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
@@ -38,12 +73,11 @@ export function Dashboard() {
                                 <card.icon size={28} />
                             </div>
                             <div className={styles.cardContent}>
-                                <span className={styles.cardValue}>{cardValue}</span>
+                                <span className={styles.cardValue}>{card.value}</span>
                                 <span className={styles.cardTitle}>{card.title}</span>
                             </div>
                         </Card>
-                    );
-                })}
+                ))}
             </div>
 
             <section>
