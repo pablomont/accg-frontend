@@ -5,13 +5,16 @@ import apis from '@/services/api';
 import { BoletoGenerator } from '@/components/business/billing/BoletoGenerator';
 import { Badge, PageTitle, Table } from '@/components/ui';
 import { formatCurrency, formatDate } from '@/utils/formatters';
+import { membersMock } from '@/data/members.mock';
 
 type BoletoApi = {
   id: string;
+  associadoId: string;
   valor: number;
 
   dataEmissao?: string;
   dataVencimento?: string;
+  vencimento?: string; // Alguns boletos usam este campo
 
   status?: 'pago' | 'pendente' | 'vencido';
 
@@ -20,6 +23,16 @@ type BoletoApi = {
     nome?: string;
   };
 };
+
+function getAssociadoNome(associadoId: string, associado?: { nomeCompleto?: string; nome?: string }) {
+  // Primeiro tenta usar o objeto associado se vier da API
+  if (associado?.nomeCompleto) return associado.nomeCompleto;
+  if (associado?.nome) return associado.nome;
+
+  // Caso contrário, busca no mock local pelo ID
+  const member = membersMock.find(m => m.id === associadoId);
+  return member?.nome ?? '—';
+}
 
 function isVencidoPorData(dataVencimento: string | undefined, status?: string) {
   if (!dataVencimento) return false;
@@ -108,17 +121,16 @@ export function Boletos() {
 
               <tbody>
                 {boletos.map((boleto) => {
-                  const venc = boleto.dataVencimento;
+                  const dataEmissao = boleto.dataEmissao;
+                  const venc = boleto.dataVencimento ?? boleto.vencimento;
                   const status = boleto.status ?? 'pendente';
 
                   return (
                     <tr key={boleto.id}>
-                      <td>{boleto.dataEmissao ? formatDate(boleto.dataEmissao) : '—'}</td>
+                      <td>{dataEmissao ? formatDate(dataEmissao) : '—'}</td>
                       <td>
                         <strong>
-                          {boleto.associado?.nomeCompleto ??
-                            boleto.associado?.nome ??
-                            '—'}
+                          {getAssociadoNome(boleto.associadoId, boleto.associado)}
                         </strong>
                       </td>
                       <td><strong>{formatCurrency(boleto.valor)}</strong></td>

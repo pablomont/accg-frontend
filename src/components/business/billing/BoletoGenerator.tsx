@@ -73,7 +73,9 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
       await apis.apiBoletos.post('/boletos', {
         associadoId: formData.associadoId,
         valor: formData.valor,
-        vencimento: formData.dataVencimento,
+        dataVencimento: formData.dataVencimento,
+        dataEmissao: getTodayDate(),
+        status: 'pendente',
       });
 
       setShowSuccessModal(true);

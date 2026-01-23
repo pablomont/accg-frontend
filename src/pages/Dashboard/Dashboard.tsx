@@ -8,7 +8,7 @@ export function Dashboard() {
     // 1. Controle de Estado do Modal (Exemplo de useState)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { totalAssociados, associadosAtivos } = useMemo (() => {
+    const { totalAssociados, associadosAtivos } = useMemo(() => {
         const total = membersMock.length;
         const ativos = membersMock.filter(m => m.status === 'ativo').length;
         return { totalAssociados: total, associadosAtivos: ativos };
@@ -87,7 +87,6 @@ export function Dashboard() {
                             placeholder="Buscar transação..."
                             className={styles.inputSearch}
                         />
-                        <Button onClick={() => setIsModalOpen(true)}>Nova Despesa</Button>
                     </div>
                 </div>
 
