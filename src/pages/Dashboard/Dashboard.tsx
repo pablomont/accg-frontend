@@ -54,6 +54,7 @@ export function Dashboard() {
 
     return (
         <div className={styles.dashboard}>
+            {/* 2. Cabeçalho da Página com Título e Ações */}
             <div className={styles.header}>
                 <div>
                     <PageTitle>Dashboard Financeiro</PageTitle>
@@ -63,6 +64,7 @@ export function Dashboard() {
                 </div>
             </div>
 
+            {/* 4. Grid de Cards Principais (KPIs) */}
             <div className={styles.cardsGrid}>
                 {summaryCardsDynamic.map(card => (
                         <Card
@@ -80,6 +82,7 @@ export function Dashboard() {
                 ))}
             </div>
 
+            {/* 5. Seção de Listagem (Tabela) */}
             <section>
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>Transações Recentes</h2>
@@ -88,9 +91,7 @@ export function Dashboard() {
                             placeholder="Buscar transação..."
                             className={styles.inputSearch}
                         />
-                        <Button onClick={() => setIsModalOpen(true)}>
-                            Nova Despesa
-                        </Button>
+                        <Button onClick={() => setIsModalOpen(true)}>Nova Despesa</Button>
                     </div>
                 </div>
 
@@ -132,6 +133,7 @@ export function Dashboard() {
                 </Card>
             </section>
 
+            {/* 6. Componente Modal (Visível apenas se isOpen={true}) */}
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -141,12 +143,8 @@ export function Dashboard() {
                     Este é um exemplo de como o Modal deve funcionar.
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-                    <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
-                        Cancelar
-                    </Button>
-                    <Button onClick={() => alert('Salvar (simulado)')}>
-                        Salvar
-                    </Button>
+                    <Button variant="secondary" onClick={() => setIsModalOpen(false)}>Cancelar</Button>
+                    <Button onClick={() => alert('Salvar (simulado)')}>Salvar</Button>
                 </div>
             </Modal>
         </div>
