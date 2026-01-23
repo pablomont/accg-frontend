@@ -64,27 +64,41 @@ export function Boletos() {
 
   return (
     <div className={styles.page}>
-      <PageTitle>Boletos e Cobranças</PageTitle>
-
       <div className={styles.header}>
-        <h1 className={styles.title}>Boletos e PIX</h1>
-        <p className={styles.subtitle}>Geração de boletos e cobranças PIX</p>
+        <div className={styles.headerInfo}>
+          <PageTitle>Boletos e Cobranças</PageTitle>
+          <p className={styles.subtitle}>Gerencie boletos e cobranças PIX dos associados</p>
+        </div>
       </div>
 
       <div className={styles.grid}>
         <section className={styles.card}>
-          <h2>Histórico de Cobranças</h2>
+          <div className={styles.cardHeader}>
+            <div>
+              <h2 className={styles.cardTitle}>📋 Histórico de Cobranças</h2>
+              <p className={styles.cardSubtitle}>{boletos.length} cobrança(s) registrada(s)</p>
+            </div>
+          </div>
 
           {loading ? (
-            <p>Carregando...</p>
+            <div className={styles.emptyState}>
+              <p>Carregando...</p>
+            </div>
           ) : erro ? (
-            <p>{erro}</p>
+            <div className={styles.emptyState}>
+              <p className={styles.emptyStateText}>{erro}</p>
+            </div>
+          ) : boletos.length === 0 ? (
+            <div className={styles.emptyState}>
+              <div className={styles.emptyStateIcon}>📭</div>
+              <p className={styles.emptyStateText}>Nenhuma cobrança encontrada</p>
+            </div>
           ) : (
             <Table>
               <thead>
                 <tr>
                   <th>Data</th>
-                  <th>Nome do Associado</th>
+                  <th>Associado</th>
                   <th>Valor</th>
                   <th>Vencimento</th>
                   <th>Status</th>
@@ -100,17 +114,15 @@ export function Boletos() {
                   return (
                     <tr key={boleto.id}>
                       <td>{boleto.dataEmissao ? formatDate(boleto.dataEmissao) : '—'}</td>
-
                       <td>
-                        {boleto.associado?.nomeCompleto ??
-                          boleto.associado?.nome ??
-                          '—'}
+                        <strong>
+                          {boleto.associado?.nomeCompleto ??
+                            boleto.associado?.nome ??
+                            '—'}
+                        </strong>
                       </td>
-
-                      <td>{formatCurrency(boleto.valor)}</td>
-
+                      <td><strong>{formatCurrency(boleto.valor)}</strong></td>
                       <td>{venc ? formatDate(venc) : '—'}</td>
-
                       <td>
                         {isVencidoPorData(venc, status) ? (
                           <Badge variant="danger">Vencido</Badge>
@@ -120,8 +132,7 @@ export function Boletos() {
                           <Badge variant="warning">Pendente</Badge>
                         )}
                       </td>
-
-                      <td>⬇</td>
+                      <td>⬇️</td>
                     </tr>
                   );
                 })}
@@ -130,8 +141,7 @@ export function Boletos() {
           )}
         </section>
 
-        <aside className={styles.card}>
-          {/* quando gerar cobrança, atualiza a tabela */}
+        <aside className={`${styles.card} ${styles.generatorCard}`}>
           <BoletoGenerator onSuccess={carregarBoletos} />
         </aside>
       </div>

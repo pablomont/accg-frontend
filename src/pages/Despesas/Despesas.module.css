@@ -1,14 +1,16 @@
-/* Mesmos estilos de Associados.module.css */
 .page {
-    max-width: var(--content-max-width);
-    margin: 0;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
     flex-direction: column;
+    gap: var(--spacing-8);
 }
 
 .header {
-    margin-bottom: var(--spacing-8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
 }
 
 .title {
@@ -58,19 +60,18 @@
 }
 
 .controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
 }
 
-
 .select {
-  height: 50px;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: var(--color-gray-100);
-  font-size: 1rem;
+    height: 50px;
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-gray-300);
+    background-color: var(--color-gray-100);
+    font-size: var(--font-size-base);
 }
 
 .actionsBox {
@@ -90,10 +91,10 @@
 }
 
 .deButton {
-    background-color: #dc2626;
-    color: #ffffff;
+    background-color: var(--color-danger);
+    color: var(--color-white);
 }
 
 .deButton:hover {
-    background-color: #b91c1c !important;
+    background-color: #b91c1c;
 }

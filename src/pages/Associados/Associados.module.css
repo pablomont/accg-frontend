@@ -1,21 +1,16 @@
 .page {
-    max-width: var(--content-max-width);
-    margin: 0;
-    padding: var(--spacing-6);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
 }
 
 .header {
-    margin-bottom: var(--spacing-8);
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.title {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-gray-900);
-    margin-bottom: var(--spacing-2);
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
 }
 
 .subtitle {
@@ -42,32 +37,7 @@
 .gridContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-6)
-}
-
-.table {
-    overflow: hidden;
-    width: 100%;
-    background: var(--color-white);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-sm);
-    border-collapse: collapse;
-}
-
-.table th {
-    text-align: left;
-    padding: var(--spacing-4);
-    font-size: var(--font-size-sm);
-    background-color: var(--color-gray-50);
-    color: var(--color-gray-600);
-    border-bottom: 1px solid var(--color-gray-200);
-}
-
-.table td {
-    padding: var(--spacing-4);
-    border-bottom: 1px solid var(--color-gray-100);
-    color: var(--color-gray-700);
-    font-size: var(--font-size-sm);
+    gap: var(--spacing-6);
 }
 
 .viewControls {
@@ -77,7 +47,6 @@
     box-shadow: var(--shadow-sm);
     padding: var(--spacing-1);
     gap: var(--spacing-2);
-    margin-bottom: var(--spacing-6);
 }
 
 .viewControls button {
@@ -85,9 +54,9 @@
     align-items: center;
     gap: var(--spacing-2);
     padding: var(--spacing-2) var(--spacing-4);
-    border: none; 
-    background-color: transparent; 
-    border-radius: var(--border-radius-sm); 
+    border: none;
+    background-color: transparent;
+    border-radius: var(--border-radius-sm);
     cursor: pointer;
     color: var(--color-gray-600);
     font-size: var(--font-size-sm);
@@ -98,19 +67,4 @@
 .viewControls .activeBtn {
     background-color: var(--color-gray-900);
     color: var(--color-white);
-}
-
-.badge {
-    padding: var(--spacing-1) var(--spacing-3);
-    border-radius: var(--border-radius-full);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    display: inline-block;
-    text-transform: capitalize;
-}
-
-.activeBtn {
-    background-color: var(--color-gray-900) !important; 
-    color: var(--color-white) !important;
-    border-color: var(--color-gray-900) !important;
 }

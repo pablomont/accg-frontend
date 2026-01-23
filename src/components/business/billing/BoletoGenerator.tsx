@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './BoletoGenerator.module.css';
-import { Card, Button, Input, Modal, Select } from '@/components/ui';
+import { Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
@@ -88,11 +88,12 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
 
   return (
     <div className={styles.container}>
-      <Card className={styles.card}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>Gerar Cobrança</h2>
-        </div>
+      <div className={styles.header}>
+        <h2 className={styles.title}>💳 Gerar Cobrança</h2>
+        <p className={styles.subtitle}>Crie um novo boleto ou PIX</p>
+      </div>
 
+      <div className={styles.form}>
         <Select
           id="associadoId"
           label="Selecione um Associado"
@@ -134,13 +135,13 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
           value={formData.descricao}
           onChange={handleChange}
         />
+      </div>
 
-        <div className={styles.footer}>
-          <Button onClick={handleGerarCobranca} className={styles.button} disabled={isLoading}>
-            {isLoading ? 'Gerando...' : 'Gerar Cobrança'}
-          </Button>
-        </div>
-      </Card>
+      <div className={styles.footer}>
+        <Button onClick={handleGerarCobranca} className={styles.button} disabled={isLoading}>
+          {isLoading ? 'Gerando...' : '✨ Gerar Cobrança'}
+        </Button>
+      </div>
 
       <Modal isOpen={showSuccessModal} onClose={handleCloseModal} title="Cobrança Gerada!">
         <div className={styles.modalContent}>
