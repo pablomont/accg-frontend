@@ -1,7 +1,7 @@
 /* Mesmos estilos de Associados.module.css */
 .page {
     max-width: var(--content-max-width);
-    margin: 0 auto;
+    margin: 0;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
