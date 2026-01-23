@@ -1,24 +1,72 @@
-import { Users } from 'lucide-react';
+import { LayoutGrid, List } from 'lucide-react';
+import { membersMock } from '@/data/members.mock'
 import styles from './Associados.module.css';
+import { useState } from 'react';
+import { MemberCard } from '@/components/business/members/MemberCard';
+import { Badge, PageTitle } from '@/components/ui';
+import { Table } from '@/components/ui';
 
 export function Associados() {
+    const [ viewMode, setViewMode ] = useState<'grid' | 'table'>('grid');
+
+    const handleNovoAssociado = () => {
+        console.log("Botao clicado") //implementar US03 aqui
+    };
+
     return (
         <div className={styles.page}>
             <div className={styles.header}>
-                <h1 className={styles.title}>Associados</h1>
-                <p className={styles.subtitle}>Gerencie os associados da entidade</p>
+                <div>
+                    <PageTitle>Gestão de Associados</PageTitle>
+                    <p className={styles.subtitle}>Gerencie todos os associados da sua organização.</p>
+                </div>
+                <button className={styles.addButton} onClick={handleNovoAssociado}> 
+                    + Novo Associado
+                </button>
             </div>
 
-            <div className={styles.placeholder}>
-                <Users className={styles.placeholderIcon} size={80} />
-                <h2 className={styles.placeholderTitle}>Módulo em Desenvolvimento</h2>
-                <p className={styles.placeholderText}>
-                    Este módulo será desenvolvido pelos alunos.
-                </p>
-                <p className={styles.placeholderHint}>
-                    Consulte o arquivo README.md para ver as tarefas da Fase A.
-                </p>
+            <div className={styles.viewControls}>
+                <button className={viewMode === 'grid' ? styles.activeBtn : ''} onClick={() => setViewMode('grid')}>
+                    <LayoutGrid size ={16} /> Grade
+                </button>
+                <button className={viewMode === 'table' ? styles.activeBtn : ''} onClick={() => setViewMode('table')}>
+                    <List size ={16} /> Tabela
+                </button>
             </div>
+
+            <main>
+                {viewMode === 'grid' ? (
+                    <div className={styles.gridContainer}>
+                        {membersMock.map((member) => (<MemberCard key={member.id} member={member} />))}
+                    </div>
+                ) : (<Table> 
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Documento</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {membersMock.map((member) => (
+                                <tr key={member.id}>
+                                    <td><strong>{member.nome}</strong></td>
+                                    <td>{member.cpfCnpj}</td>
+                                    <td>{member.email}</td>
+                                    <td>{member.telefone}</td>
+                                    <td>
+                                        <Badge variant={member.status === 'ativo' ? 'success' : 'warning'}>
+                                            {member.status === 'ativo' ? 'Ativo' : 'Inativo'}
+                                        </Badge>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                )}
+            </main>
         </div>
     );
 }
