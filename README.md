@@ -6,6 +6,8 @@ Bem-vindo ao projeto! Este é o **Front-end** do sistema de gestão financeira d
 
 ---
 
+[Vídeo de apresentação](https://www.youtube.com/watch?v=okzjgtmQgaE)
+
 ## 🧭 Visão Geral
 
 O sistema permite gerenciar as finanças da ACCG através de três módulos principais:
