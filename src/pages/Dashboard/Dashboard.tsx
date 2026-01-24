@@ -1,36 +1,60 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
-import { financeMock } from '@/data/finance.mock';
-import { Receipt } from 'lucide-react';
+import { Users, UserCheck, Receipt, FileText } from 'lucide-react';
+import { membersMock } from '@/data/members.mock';
+import { accountsMock } from '@/data/accounts.mock';
 
 export function Dashboard() {
-    // 1. Controle de Estado do Modal (Exemplo de useState)
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-    const calcularTotalDespesas = () => {
-        let total = 0;
-        financeMock.forEach((despesa) => {
-            total += despesa.valor;
-        });
-        
-        return new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        }).format(total);
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const despesaCard = {
-        id: 3,
-        title: 'Despesas do Mês',
-        value: calcularTotalDespesas(), 
-        icon: Receipt,
-        color: 'warning',
-    };
+    const { totalAssociados, associadosAtivos, boletosPendentes } = useMemo(() => {
+        const total = membersMock.length;
+        const ativos = membersMock.filter(m => m.status === 'ativo').length;
+
+        const pendentes = accountsMock.filter(boleto => boleto.status !== 'pago').length;
+
+        return {
+            totalAssociados: total,
+            associadosAtivos: ativos,
+            boletosPendentes: pendentes,
+        };
+    }, [membersMock, accountsMock]);
+
+    const summaryCardsDynamic = [
+        {
+            id: 1,
+            title: 'Total de Associados',
+            value: totalAssociados.toString(),
+            icon: Users,
+            color: 'primary',
+        },
+        {
+            id: 2,
+            title: 'Associados Ativos',
+            value: associadosAtivos.toString(),
+            icon: UserCheck,
+            color: 'success',
+        },
+        {
+            id: 3,
+            title: 'Despesas do Mês',
+            value: 'R$ 12.450,00',
+            icon: Receipt,
+            color: 'warning',
+        },
+        {
+            id: 4,
+            title: 'Boletos Pendentes',
+            value: boletosPendentes.toString(),
+            icon: FileText,
+            color: 'danger',
+        },
+    ];
 
     return (
         <div className={styles.dashboard}>
-            {/* 2. Cabeçalho da Página com Título e Ações */}
             <div className={styles.header}>
                 <div>
                     <PageTitle>Dashboard Financeiro</PageTitle>
@@ -39,23 +63,24 @@ export function Dashboard() {
                     </p>
                 </div>
             </div>
-                {/* 4. Grid de Cards */}
+
             <div className={styles.cardsGrid}>
-                <Card
-                    key={despesaCard.id}
-                    className={`${styles.card} ${styles[`card${despesaCard.color.charAt(0).toUpperCase() + despesaCard.color.slice(1)}`]}`}
-                >
-                    <div className={styles.cardIcon}>
-                        <despesaCard.icon size={28} />
-                    </div>
-                    <div className={styles.cardContent}>
-                        <span className={styles.cardValue}>{despesaCard.value}</span>
-                        <span className={styles.cardTitle}>{despesaCard.title}</span>
-                    </div>
-                </Card>
+                {summaryCardsDynamic.map(card => (
+                    <Card
+                        key={card.id}
+                        className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
+                    >
+                        <div className={styles.cardIcon}>
+                            <card.icon size={28} />
+                        </div>
+                        <div className={styles.cardContent}>
+                            <span className={styles.cardValue}>{card.value}</span>
+                            <span className={styles.cardTitle}>{card.title}</span>
+                        </div>
+                    </Card>
+                ))}
             </div>
 
-            {/* 5. Seção de Listagem (Tabela) */}
             <section>
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>Transações Recentes</h2>
@@ -80,33 +105,32 @@ export function Dashboard() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10/12/2023</td>
-                                <td>Mensalidade - João Silva</td>
-                                <td>Receita</td>
-                                <td>R$ 150,00</td>
-                                <td><Badge variant="success">Pago</Badge></td>
-                            </tr>
-                            <tr>
-                                <td>09/12/2023</td>
-                                <td>Conta de Luz</td>
-                                <td>Despesa Fixa</td>
-                                <td>R$ 450,00</td>
-                                <td><Badge variant="success">Pago</Badge></td>
-                            </tr>
-                            <tr>
-                                <td>08/12/2023</td>
-                                <td>Manutenção Ar-Condicionado</td>
-                                <td>Manutenção</td>
-                                <td>R$ 200,00</td>
-                                <td><Badge variant="warning">Pendente</Badge></td>
-                            </tr>
+                            {accountsMock.map(boleto => (
+                                <tr key={boleto.id}>
+                                    <td>{new Date(boleto.dataVencimento).toLocaleDateString()}</td>
+                                    <td>{boleto.descricao}</td>
+                                    <td>Receita</td>
+                                    <td>R$ {boleto.valor.toFixed(2)}</td>
+                                    <td>
+                                        <Badge
+                                            variant={
+                                                boleto.status === 'pago'
+                                                    ? 'success'
+                                                    : boleto.status === 'pendente'
+                                                    ? 'warning'
+                                                    : 'danger'
+                                            }
+                                        >
+                                            {boleto.status.charAt(0).toUpperCase() + boleto.status.slice(1)}
+                                        </Badge>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </Card>
             </section>
 
-            {/* 6. Componente Modal (Visível apenas se isOpen={true}) */}
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
