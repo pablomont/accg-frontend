@@ -1,19 +1,72 @@
 import styles from "./Despesas.module.css";
-import { Badge, Select, PageTitle, Table, Button, Input, Modal } from "@/components/ui";
-import { financeMock, categoriesMock } from "@/data/finance.mock";
+import {
+  Badge,
+  Select,
+  PageTitle,
+  Table,
+  Button,
+  Input,
+  Modal,
+} from "@/components/ui";
+import { categoriesMock } from "@/data/finance.mock";
 import { formatDate, formatCurrency } from "@/utils";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import api from "@/services/api";
 
 export function Despesas() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [despesas, setDespesas] = useState<any[]>([]);
 
   const getCategoriaNome = (categoriaId: string) => {
     const categoria = categoriesMock.find((c) => c.id === categoriaId);
     return categoria ? categoria.nome : "—";
+  };
+
+  // 🔹 BUSCAR DESPESAS (GET)
+  useEffect(() => {
+    api
+      .get("/despesas")
+      .then((response: any) => {
+        setDespesas(response.data);
+      })
+      .catch((error: any) => {
+        console.error("Erro ao buscar despesas", error);
+      });
+  }, []);
+
+  // 🔹 SALVAR DESPESA (POST)
+  const handleSave = async () => {
+    if (!descricao || !valor || !categoria) {
+      alert("Preencha todos os campos");
+      return;
+    }
+
+    const novaDespesa = {
+      descricao,
+      valor: Number(valor),
+      categoriaId: categoria,
+      status: "pendente",
+      data: new Date().toISOString(),
+    };
+
+    try {
+      await api.post("/despesas", novaDespesa);
+
+      const response: any = await api.get("/despesas");
+      setDespesas(response.data);
+
+      alert("Despesa salva com sucesso!");
+      setIsModalOpen(false);
+      setDescricao("");
+      setValor("");
+      setCategoria("");
+    } catch (error: any) {
+      console.error(error);
+      alert("Erro ao salvar despesa");
+    }
   };
 
   return (
@@ -26,7 +79,12 @@ export function Despesas() {
       </div>
 
       <div className={styles.headerActions}>
-        <Button className={styles.deButton} onClick={() => setIsModalOpen(true)}>+ Nova Despesa </Button>
+        <Button
+          className={styles.deButton}
+          onClick={() => setIsModalOpen(true)}
+        >
+          + Nova Despesa
+        </Button>
 
         <Modal
           isOpen={isModalOpen}
@@ -38,42 +96,39 @@ export function Despesas() {
               label="Descrição"
               placeholder="Ex: Conta de Luz"
               value={descricao}
-              onChange={(e)=> setDescricao(e.target.value)}
+              onChange={(e) => setDescricao(e.target.value)}
             />
           </div>
 
           <div className={styles.controls}>
             <Input
-            label="Valor"
-            placeholder="R$ 0,00"
-            value={valor}
-            onChange={(e)=> setValor(e.target.value)}
+              label="Valor"
+              placeholder="R$ 0,00"
+              value={valor}
+              onChange={(e) => setValor(e.target.value)}
             />
           </div>
 
           <div className={styles.controls}>
             <Select
-              label="categoria"
+              label="Categoria"
               value={categoria}
-              onChange={(e)=> setCategoria(e.target.value)}
+              onChange={(e) => setCategoria(e.target.value)}
               options={[
-                  {label: 'Fixa', value:'fixa'},
-                  {label: 'Variável', value:'variavel'}
+                { label: "Fixa", value: "fixa" },
+                { label: "Variável", value: "variavel" },
               ]}
-              />
+            />
           </div>
 
-          <div
-            className={styles.actionsBox}
-          >
-          <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
+          <div className={styles.actionsBox}>
+            <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
               Cancelar
-          </Button>
-          <Button className={styles.deButton} onClick={() => alert(`${descricao} | ${valor} | ${categoria}`)}>
+            </Button>
+            <Button className={styles.deButton} onClick={handleSave}>
               Salvar
-          </Button>
+            </Button>
           </div>
-
         </Modal>
       </div>
 
@@ -90,7 +145,7 @@ export function Despesas() {
           </tr>
         </thead>
         <tbody>
-          {financeMock.map((despesa) => (
+          {despesas.map((despesa) => (
             <tr key={despesa.id}>
               <td>{formatDate(despesa.data)}</td>
               <td>{despesa.descricao}</td>
