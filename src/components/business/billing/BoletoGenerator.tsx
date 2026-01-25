@@ -53,7 +53,7 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
         setErrors({});
     };
 
-    const handleGerarCobranca = () => {
+    const handleGerarCobranca = async () => {
         const newErrors: Partial<Record<keyof BoletoFormData, string>> = {};
         if (!formData.associadoId) newErrors.associadoId = 'Selecione um associado.';
         if (formData.valor <= 0) newErrors.valor = 'O valor deve ser maior que zero.';
@@ -61,10 +61,28 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
         else if (isPastDate(formData.dataVencimento)) newErrors.dataVencimento = 'A data de vencimento não pode ser anterior à data atual.';
 
         setErrors(newErrors);
-        if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
-    };
+        if (Object.keys(newErrors).length !== 0) return;
 
-    
+        try {
+            setIsLoading(true);
+            
+            await apis.apiBoletos.post('/boletos', {
+                associadoId: formData.associadoId,
+                valor: formData.valor,
+                dataVencimento: formData.dataVencimento,
+                dataEmissao: getTodayDate(),
+                status: 'pendente',
+            });
+            
+            setShowSuccessModal(true);
+            onSuccess?.();
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao gerar boleto');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <div className={styles.container}>
