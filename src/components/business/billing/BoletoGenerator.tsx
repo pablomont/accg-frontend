@@ -84,62 +84,97 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
         }
     };
 
+    const getWhatsAppMessage = (): string => {
+        if (!associadoSelecionado) return '';
+        
+        return `🧾 *Nova Cobrança Gerada*%0A%0A` +
+           `Olá, *${associadoSelecionado.nome}*!%0A%0A` +
+           `Uma cobrança foi gerada para você:%0A` +
+           `💰 *Valor:* ${formatCurrency(formData.valor)}%0A` +
+           `📅 *Vencimento:* ${formData.dataVencimento}%0A` +
+           (formData.descricao ? `📝 *Descrição:* ${formData.descricao}%0A` : '') +
+           `%0AAssociação Comercial de Campina Grande`;
+    };
+
     return (
         <div className={styles.container}>
-            <Card className={styles.card}>
-                <div className={styles.header}>
-                    <h2 className={styles.title}>Gerar Cobrança</h2>
-                </div>
-
+            <div className={styles.header}>
+                <h2 className={styles.title}>💳 Gerar Cobrança</h2>
+                <p className={styles.subtitle}>Crie um novo boleto ou PIX</p>
+            </div>
+            
+            <div className={styles.form}>
                 <Select
-                    id="associadoId"
-                    label="Selecione um Associado"
-                    value={formData.associadoId}
-                    onChange={handleChange}
-                    options={membersMock.map(m => ({ label: m.nome, value: m.id }))}
-                    placeholder="-- Escolha um associado --"
-                    error={errors.associadoId}
-                    required
+                id="associadoId"
+                label="Selecione um Associado"
+                value={formData.associadoId}
+                onChange={handleChange}
+                options={membersMock.map((m) => ({ label: m.nome, value: m.id }))}
+                placeholder="-- Escolha um associado --"
+                error={errors.associadoId}
+                required
                 />
-
-                <Input 
-                    id="valor" 
-                    label="Valor (R$)" 
-                    type="number" 
-                    step="0.10" 
-                    min="0.10"
-                    lang="pt-BR"
-                    value={formData.valor ? formData.valor.toFixed(2) : ''} 
-                    onChange={handleChange} 
-                    error={errors.valor} 
+                
+                <Input
+                id="valor"
+                label="Valor (R$)"
+                type="number"
+                step="0.10"
+                min="0.10"
+                lang="pt-BR"
+                value={formData.valor ? formData.valor.toFixed(2) : ''}
+                onChange={handleChange}
+                error={errors.valor}
                 />
-
-                <Input 
-                    id="dataVencimento" 
-                    label="Vencimento" 
-                    type="date" 
-                    min={getTodayDate()}
-                    value={formData.dataVencimento} 
-                    onChange={handleChange} 
-                    error={errors.dataVencimento} 
+                
+                <Input
+                id="dataVencimento"
+                label="Vencimento"
+                type="date"
+                min={getTodayDate()}
+                value={formData.dataVencimento}
+                onChange={handleChange}
+                error={errors.dataVencimento}
                 />
-
-                <Input id="descricao" label="Descrição (Opcional)" type="text" placeholder="A descrição informada será impressa na fatura"
-                    value={formData.descricao} onChange={handleChange} />
-
-                <div className={styles.footer}>
-                    <Button onClick={handleGerarCobranca} className={styles.button}>Gerar Cobrança</Button>
-                </div>
-            </Card>
+                
+                <Input
+                id="descricao"
+                label="Descrição (Opcional)"
+                type="text"
+                placeholder="A descrição constará na fatura."
+                value={formData.descricao}
+                onChange={handleChange}
+                />
+            </div>
+            
+            <div className={styles.footer}>
+                <Button onClick={handleGerarCobranca} className={styles.button} disabled={isLoading}>
+                    {isLoading ? 'Gerando...' : '✨ Gerar Cobrança'}
+                </Button>
+            </div>
 
             <Modal isOpen={showSuccessModal} onClose={handleCloseModal} title="Cobrança Gerada!">
                 <div className={styles.modalContent}>
                     <p className={styles.modalText}>
-                        Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
+                        Boleto para <strong>{associadoSelecionado?.nome}</strong> no valor de{' '} <strong>{formatCurrency(formData.valor)}</strong> gerado com sucesso. 
                     </p>
-                    {formData.descricao && <p className={styles.modalText}><strong>Descrição:</strong> {formData.descricao}</p>}
-                    <div className={styles.modalActions}>
-                        <Button onClick={handleCloseModal} variant="secondary">Fechar</Button>
+                    {formData.descricao && (<p className={styles.modalText}><strong>Descrição:</strong> {formData.descricao}</p>)}
+                    <div className={styles.modalActions} style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                        <Button onClick={handleCloseModal} variant="secondary">
+                            Fechar
+                        </Button>
+                        
+                        {associadoSelecionado?.telefone && (
+                            <Button
+                            onClick={() => {
+                                const url = buildWhatsAppUrl(associadoSelecionado.telefone, getWhatsAppMessage());
+                                window.open(url, '_blank');
+                            }}
+                            variant="primary"
+                            >
+                                📱 Enviar via WhatsApp
+                            </Button>
+                        )}
                     </div>
                 </div>
             </Modal>
