@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styles from './BoletoGenerator.module.css';
-import { Card, Button, Input, Modal, Select } from '@/components/ui';
+import { Button, Input, Modal, Select } from '@/components/ui';
 import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
+import apis from '@/services/api';
+import { buildWhatsAppUrl } from '@/utils/whatsapp';
+
+
 
 const INITIAL_STATE: BoletoFormData = {
     associadoId: '',
@@ -12,12 +16,17 @@ const INITIAL_STATE: BoletoFormData = {
     descricao: ''
 };
 
-export function BoletoGenerator() {
+interface BoletoGeneratorProps {
+  onSuccess?: () => void;
+}
+
+export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
     const [formData, setFormData] = useState<BoletoFormData>(INITIAL_STATE);
     const [errors, setErrors] = useState<Partial<Record<keyof BoletoFormData, string>>>({});
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const associadoSelecionado = membersMock.find(m => m.id === formData.associadoId);
+    const associadoSelecionado = membersMock.find((m) => m.id === formData.associadoId);
 
     const getTodayDate = () => {
         const today = new Date();
@@ -26,16 +35,22 @@ export function BoletoGenerator() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { id, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            [id]: ['valor'].includes(id) ? (parseFloat(value) || 0) : value
+            [id]: id === 'valor' ? (parseFloat(value) || 0) : value,
         }));
-        if (errors[id as keyof BoletoFormData]) setErrors(prev => ({ ...prev, [id]: '' }));
+        if (errors[id as keyof BoletoFormData]) {setErrors((prev) => ({ ...prev, [id]: '' }));}
     };
 
     const isPastDate = (date: string) => {
         if (!date) return false;
         return date < getTodayDate();
+    };
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        setFormData(INITIAL_STATE);
+        setErrors({});
     };
 
     const handleGerarCobranca = () => {
@@ -49,10 +64,7 @@ export function BoletoGenerator() {
         if (Object.keys(newErrors).length === 0) setShowSuccessModal(true);
     };
 
-    const handleCloseModal = () => {
-        setShowSuccessModal(false);
-        setFormData(INITIAL_STATE);
-    };
+    
 
     return (
         <div className={styles.container}>
