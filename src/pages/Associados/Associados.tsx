@@ -45,6 +45,7 @@ export function Associados() {
                                 <th>Nome</th>
                                 <th>Documento</th>
                                 <th>Email</th>
+                                <th>Telefone</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@ export function Associados() {
                                     <td><strong>{member.nome}</strong></td>
                                     <td>{member.cpfCnpj}</td>
                                     <td>{member.email}</td>
+                                    <td>{member.telefone}</td>
                                     <td>
                                         <Badge variant={member.status === 'ativo' ? 'success' : 'warning'}>
                                             {member.status === 'ativo' ? 'Ativo' : 'Inativo'}

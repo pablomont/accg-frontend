@@ -7,13 +7,11 @@ import { formatCurrency } from '@/utils/formatters';
 import apis from '@/services/api';
 import { buildWhatsAppUrl } from '@/utils/whatsapp';
 
-
-
 const INITIAL_STATE: BoletoFormData = {
-    associadoId: '',
-    valor: 0,
-    dataVencimento: '',
-    descricao: ''
+  associadoId: '',
+  valor: 0,
+  dataVencimento: '',
+  descricao: '',
 };
 
 interface BoletoGeneratorProps {
