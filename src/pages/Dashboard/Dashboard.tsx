@@ -3,16 +3,20 @@ import styles from './Dashboard.module.css';
 import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/components/ui';
 import { Users, UserCheck, Receipt, FileText } from 'lucide-react';
 import { membersMock } from '@/data/members.mock';
+import { accountsMock } from '@/data/accounts.mock';
+
 
 export function Dashboard() {
     // 1. Controle de Estado do Modal (Exemplo de useState)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { totalAssociados, associadosAtivos } = useMemo(() => {
+    const { totalAssociados, associadosAtivos, boletosPendentes } = useMemo(() => {
         const total = membersMock.length;
         const ativos = membersMock.filter(m => m.status === 'ativo').length;
-        return { totalAssociados: total, associadosAtivos: ativos };
-    }, [membersMock]);
+        const pendentes = accountsMock.filter(boleto => boleto.status !== 'pago').length;
+        
+        return { totalAssociados: total, associadosAtivos: ativos, boletosPendentes: pendentes, };
+    }, [membersMock, accountsMock]);
 
     const summaryCardsDynamic = [
         {
@@ -42,7 +46,7 @@ export function Dashboard() {
         {
             id: 4,
             title: 'Boletos Pendentes',
-            value: '23',
+            value: boletosPendentes.toString(),
             icon: FileText,
             color: 'danger',
         },
