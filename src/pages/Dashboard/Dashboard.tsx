@@ -4,19 +4,29 @@ import { Card, PageTitle, Button, Input, Table, Badge, Modal } from '@/component
 import { Users, UserCheck, Receipt, FileText } from 'lucide-react';
 import { membersMock } from '@/data/members.mock';
 import { accountsMock } from '@/data/accounts.mock';
-
+import { financeMock } from '@/data/finance.mock';
 
 export function Dashboard() {
     // 1. Controle de Estado do Modal (Exemplo de useState)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { totalAssociados, associadosAtivos, boletosPendentes } = useMemo(() => {
-        const total = membersMock.length;
-        const ativos = membersMock.filter(m => m.status === 'ativo').length;
-        const pendentes = accountsMock.filter(boleto => boleto.status !== 'pago').length;
-        
-        return { totalAssociados: total, associadosAtivos: ativos, boletosPendentes: pendentes, };
-    }, [membersMock, accountsMock]);
+    const { totalAssociados, associadosAtivos, boletosPendentes, totalDespesasMes } = useMemo(() => {
+        const totalAssociados = membersMock.length;
+        const associadosAtivos = membersMock.filter(member => member.status === 'ativo').length;
+        const boletosPendentes = accountsMock.filter(boleto => boleto.status !== 'pago').length;
+
+        const somaDespesas = financeMock.reduce(
+            (total, despesa) => total + despesa.valor,
+            0
+        );
+
+        const totalDespesasMes = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(somaDespesas);
+
+        return { totalAssociados, associadosAtivos, boletosPendentes, totalDespesasMes};
+    }, []);
 
     const summaryCardsDynamic = [
         {
@@ -38,7 +48,7 @@ export function Dashboard() {
         {
             id: 3,
             title: 'Despesas do Mês',
-            value: 'R$ 12.450,00',
+            value: totalDespesasMes,
             icon: Receipt,
             color: 'warning',
         },
@@ -66,7 +76,7 @@ export function Dashboard() {
 
             {/* 4. Grid de Cards Principais (KPIs) */}
             <div className={styles.cardsGrid}>
-                {summaryCardsDynamic.map((card) => (
+                {summaryCardsDynamic.map(card => (
                     <Card
                         key={card.id}
                         className={`${styles.card} ${styles[`card${card.color.charAt(0).toUpperCase() + card.color.slice(1)}`]}`}
@@ -91,6 +101,9 @@ export function Dashboard() {
                             placeholder="Buscar transação..."
                             className={styles.inputSearch}
                         />
+                        <Button onClick={() => setIsModalOpen(true)}>
+                            Nova Despesa
+                        </Button>
                     </div>
                 </div>
 
