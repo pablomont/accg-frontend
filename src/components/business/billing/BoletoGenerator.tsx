@@ -5,6 +5,7 @@ import { membersMock } from '@/data/members.mock';
 import { BoletoFormData } from '@/types/boleto';
 import { formatCurrency } from '@/utils/formatters';
 import apis from '@/services/api';
+import { maskCurrency, unmask } from '@/utils/masks';
 
 const INITIAL_STATE: BoletoFormData = {
   associadoId: '',
@@ -19,6 +20,7 @@ interface BoletoGeneratorProps {
 
 export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
   const [formData, setFormData] = useState<BoletoFormData>(INITIAL_STATE);
+  const [valorDisplay, setValorDisplay] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof BoletoFormData, string>>>({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,10 +35,19 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [id]: id === 'valor' ? (parseFloat(value) || 0) : value,
-    }));
+    if (id === 'valor') {
+      // Aplica a máscara de moeda
+      const masked = maskCurrency(value);
+      setValorDisplay(masked);
+
+      // Converte o valor mascarado de volta para número
+      const numbers = unmask(value);
+      const numericValue = numbers ? parseInt(numbers, 10) / 100 : 0;
+
+      setFormData((prev) => ({ ...prev, valor: numericValue }));
+    } else {
+      setFormData((prev) => ({ ...prev, [id]: value }));
+    }
 
     if (errors[id as keyof BoletoFormData]) {
       setErrors((prev) => ({ ...prev, [id]: '' }));
@@ -51,6 +62,7 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
   const handleCloseModal = () => {
     setShowSuccessModal(false);
     setFormData(INITIAL_STATE);
+    setValorDisplay('');
     setErrors({});
   };
 
@@ -110,11 +122,9 @@ export function BoletoGenerator({ onSuccess }: BoletoGeneratorProps) {
         <Input
           id="valor"
           label="Valor (R$)"
-          type="number"
-          step="0.10"
-          min="0.10"
-          lang="pt-BR"
-          value={formData.valor ? formData.valor.toFixed(2) : ''}
+          type="text"
+          placeholder="R$ 0,00"
+          value={valorDisplay}
           onChange={handleChange}
           error={errors.valor}
         />
